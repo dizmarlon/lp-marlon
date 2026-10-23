@@ -36,12 +36,14 @@ function initInteractions(lenis) {
   });
   document.querySelectorAll('.project-media').forEach(link => link.addEventListener('click', event => event.preventDefault()));
 
+  document.querySelectorAll('.faq-answer').forEach(answer => answer.setAttribute('inert', ''));
   document.querySelectorAll('.faq-question').forEach(button => button.addEventListener('click', () => {
     const wasOpen = button.getAttribute('aria-expanded') === 'true';
     document.querySelectorAll('.faq-question').forEach(other => {
       const open = other === button && !wasOpen;
       other.setAttribute('aria-expanded', String(open));
       other.closest('.faq-row').classList.toggle('is-open', open);
+      document.getElementById(other.getAttribute('aria-controls'))?.toggleAttribute('inert', !open);
     });
   }));
 
@@ -73,16 +75,6 @@ function initInteractions(lenis) {
     if (event.key === 'Tab') { event.preventDefault(); dialog.querySelector('.project-video-close').focus(); }
   });
 
-  // O destino continua pendente por padrão. Quando configurado, conserva a animação de clique.
-  document.querySelectorAll('.cta-primary').forEach(anchor => anchor.addEventListener('click', event => {
-    const href=anchor.getAttribute('href');
-    if (anchor.dataset.masterLink !== 'configurado' || !href || href.startsWith('#')) return;
-    event.preventDefault(); if (anchor.classList.contains('is-filling')) return;
-    anchor.classList.add('is-filling','is-filled');
-    setTimeout(()=>{ anchor.classList.remove('is-filling'); window.open(anchor.href,'_blank','noopener,noreferrer'); },reduced()?0:1050);
-    setTimeout(()=>anchor.classList.add('is-returning'),6100);
-    setTimeout(()=>anchor.classList.remove('is-filled','is-returning'),7050);
-  }));
 }
 window.SiteModules.initInteractions = initInteractions;
 })();

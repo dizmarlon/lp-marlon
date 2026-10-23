@@ -99,7 +99,8 @@ function initLanguage() {
     observer.disconnect();language=value;
     document.documentElement.lang=languages[value].tag;
     tree(document.body);wallet();
-    document.querySelectorAll('meta[name="description"],meta[property="og:description"],meta[name="twitter:description"]').forEach(meta=>attribute(meta,'content'));
+    tree(document.querySelector('title'));
+    document.querySelectorAll('meta[name="description"],meta[property="og:description"],meta[name="twitter:description"],meta[property="og:title"],meta[name="twitter:title"]').forEach(meta=>attribute(meta,'content'));
     document.querySelector('.lang-toggle')?.setAttribute('aria-label',languages[value].label);
     document.querySelectorAll('.lang-toggle-btn').forEach(button=>{
       const active=button.dataset.language===value;

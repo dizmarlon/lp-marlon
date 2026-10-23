@@ -84,15 +84,14 @@ function gateways() {
     gsap.fromTo('.gateways-panel', { y: 90, opacity: 0, scale: .97 }, { y: 0, opacity: 1, scale: 1, duration: 1.1, ease: 'power3.out',
       scrollTrigger: { trigger: '.gateways-panel', start: 'top 85%', toggleActions: 'play none none reverse' } });
     gsap.fromTo('.gateways-feature', { y: 56, opacity: 0 }, { y: 0, opacity: 1, duration: .8, stagger: .12, ease: 'power3.out',
-      scrollTrigger: { trigger: '.gateways-features', start: 'top 88%', toggleActions: 'play none none reverse' } });
+      scrollTrigger: { trigger: '.services-list', start: 'top 88%', toggleActions: 'play none none reverse' } });
   }, document.querySelector('.gateways-section'));
 }
 
 function hand() {
   const section = document.querySelector('.brand-hand-section');
   const timeline = gsap.timeline({ paused: true });
-  timeline.fromTo(section.querySelector('.brand-hand-art'), { autoAlpha: 0, scale: .68, y: 88 },
-    { autoAlpha: 1, scale: 1, y: 0, duration: 1.3, ease: 'power3.out' }, 0);
+
   timeline.fromTo(section.querySelector('.brand-hand-copy').children, { autoAlpha: 0, y: 38 },
     { autoAlpha: 1, y: 0, stagger: .12, duration: .8, ease: 'power3.out' }, .1);
   ScrollTrigger.create({ trigger: section, start: 'top 90%', animation: timeline, toggleActions: 'play none none reverse', invalidateOnRefresh: true });
@@ -156,7 +155,7 @@ function initAnimations() {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   // Mesma ordem dos efeitos de montagem da referência, inclusive o pin.
   counters();
-  if (!reduced) { clouds(); processTimeline(); whySection(); gateways(); hand(); faq(); }
+  if (!reduced) { hand(); faq(); }
   floatingBar(reduced);
   if (!reduced) walletAndProjects();
   const refresh = () => ScrollTrigger.refresh();
