@@ -137,14 +137,60 @@ function floatingBar(reduced) {
   setInterval(contrast, 200);
 }
 
-function walletAndProjects() {
-  const headline = document.querySelector('.wallet-headline');
-  const timeline = gsap.timeline({ scrollTrigger: { trigger: headline, start: 'top 85%', end: 'top 30%', scrub: .5 } });
-  timeline.fromTo(headline.querySelectorAll('.wallet-word'), { opacity: .12 }, { opacity: 1, stagger: .12, duration: 1, ease: 'none' });
-  timeline.fromTo('.wallet-left-copy', { opacity: 0, x: -64 }, { opacity: 1, x: 0, duration: 1.4, ease: 'power1.out' }, '>-0.02');
-  timeline.fromTo('.wallet-right-copy', { opacity: 0, x: 64 }, { opacity: 1, x: 0, duration: 1.4, ease: 'power1.out' }, '<0.12');
-  gsap.fromTo('.wallet-art', { scale: .7, opacity: 0 }, { scale: 1, opacity: 1, ease: 'none',
-    scrollTrigger: { trigger: document.querySelector('.wallet-section'), start: 'top bottom', end: 'bottom bottom', scrub: .5 } });
+function walletAnimations() {
+  const section = document.querySelector('.wallet-section');
+  if (!section) return;
+  const headline = section.querySelector('.wallet-headline');
+  const words = headline.querySelectorAll('.wallet-word');
+  const image = section.querySelector('.wallet-art');
+  const media = gsap.matchMedia();
+  media.add({
+    all: 'all',
+    small: '(max-width: 760px)',
+    touch: '(pointer: coarse)',
+    reduce: '(prefers-reduced-motion: reduce)'
+  }, context => {
+    const { small, touch, reduce } = context.conditions;
+    section.dataset.walletAnimation = reduce ? 'reduced' : small || touch ? 'entrance' : 'scroll';
+    if (reduce) return () => { delete section.dataset.walletAnimation; };
+
+    if (small || touch) {
+      // No celular, cada parte entra quando ela própria chega à tela.
+      // A rolagem por toque pode atravessar toda a faixa do scrub em um gesto.
+      gsap.fromTo(words, { opacity: .12 }, { opacity: 1, stagger: .06, duration: .6, ease: 'power2.out',
+        scrollTrigger: { trigger: headline, start: 'top 88%', once: true } });
+      ['.wallet-left-copy', '.wallet-right-copy'].forEach((selector, index) => {
+        const element = section.querySelector(selector);
+        gsap.fromTo(element, { autoAlpha: 0, x: index ? 28 : -28 }, { autoAlpha: 1, x: 0, duration: .75, ease: 'power3.out',
+          scrollTrigger: { trigger: element, start: 'top 88%', once: true } });
+      });
+
+      // Em conexão lenta, a imagem ainda precisa fazer a entrada depois de carregar.
+      let entered = false;
+      const imageTween = gsap.fromTo(image, { autoAlpha: 0, scale: .82, y: 24 },
+        { autoAlpha: 1, scale: 1, y: 0, duration: .85, ease: 'power3.out', paused: true });
+      const playImage = () => { if (entered && image.complete && image.naturalWidth > 0) imageTween.play(); };
+      const imageLoaded = () => { ScrollTrigger.refresh(); playImage(); };
+      image.addEventListener('load', imageLoaded);
+      ScrollTrigger.create({ trigger: section.querySelector('.wallet-art-position'), start: 'top 90%', once: true,
+        onEnter: () => { entered = true; playImage(); } });
+      return () => {
+        image.removeEventListener('load', imageLoaded);
+        delete section.dataset.walletAnimation;
+      };
+    }
+
+    const timeline = gsap.timeline({ scrollTrigger: { trigger: headline, start: 'top 85%', end: 'top 30%', scrub: .5 } });
+    timeline.fromTo(words, { opacity: .12 }, { opacity: 1, stagger: .12, duration: 1, ease: 'none' });
+    timeline.fromTo(section.querySelector('.wallet-left-copy'), { opacity: 0, x: -64 }, { opacity: 1, x: 0, duration: 1.4, ease: 'power1.out' }, '>-0.02');
+    timeline.fromTo(section.querySelector('.wallet-right-copy'), { opacity: 0, x: 64 }, { opacity: 1, x: 0, duration: 1.4, ease: 'power1.out' }, '<0.12');
+    gsap.fromTo(image, { scale: .7, opacity: 0 }, { scale: 1, opacity: 1, ease: 'none',
+      scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom bottom', scrub: .5 } });
+    return () => { delete section.dataset.walletAnimation; };
+  });
+}
+
+function projectAnimations() {
   gsap.timeline({ scrollTrigger: { trigger: '.projects-section', start: 'top 82%', end: 'top 38%', scrub: .5 } })
     .fromTo(document.querySelectorAll('.projects-headline, .projects-sub, .project-card'), { opacity: 0, y: 52 },
       { opacity: 1, y: 0, duration: 1.2, ease: 'power1.out', stagger: .14 });
@@ -152,12 +198,14 @@ function walletAndProjects() {
 
 function initAnimations() {
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // Mesma ordem dos efeitos de montagem da referência, inclusive o pin.
+  // Os gatilhos da terceira seção são recalculados também ao mudar a preferência de movimento.
+  walletAnimations();
   counters();
   if (!reduced) { hand(); faq(); }
   floatingBar(reduced);
-  if (!reduced) walletAndProjects();
+  if (!reduced) projectAnimations();
   const refresh = () => ScrollTrigger.refresh();
   addEventListener('load', refresh, { once: true });
   addEventListener('preloader:done', refresh, { once: true });
