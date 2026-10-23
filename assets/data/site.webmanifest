@@ -1,0 +1,28 @@
+{
+  "name": "Jorge Guilherme | Web Developer",
+  "short_name": "Jorge",
+  "start_url": "../../",
+  "scope": "../../",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "../images/icon-192-9i8ir2.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "../images/icon-512-1ece30i.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "../images/icon-512-maskable-1l4lzxb.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

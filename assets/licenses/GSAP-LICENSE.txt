@@ -1,0 +1,14 @@
+GSAP, CSSPlugin, Observer and ScrollTrigger 3.15.0
+
+The executable library code in assets/js/vendor/gsap-scrolltrigger-3.15.0.js
+was extracted without changes from the captured site's local bundle.
+
+GSAP is governed by the Standard "No Charge" GSAP License:
+https://gsap.com/community/standard-license/
+
+Copyright (c) 2025, Webflow. All rights reserved.
+The official license text at the address above governs use and redistribution.
+This notice does not replace or expand that license.
+
+Source of the captured bundle and extraction hash are recorded in
+diagnostico/conversao/RELATORIO.md in the working project.

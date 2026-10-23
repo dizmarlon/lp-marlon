@@ -1,0 +1,82 @@
+/* Fontes fornecidas pelo dono, convertidas para WOFF2 sem alterar os glifos. */
+@font-face { font-family: "ZT Nature"; src: url("../fonts/zt-nature-regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "ZT Nature"; src: url("../fonts/zt-nature-medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "ZT Nature"; src: url("../fonts/zt-nature-semibold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "ZT Nature"; src: url("../fonts/zt-nature-bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+
+:root {
+  --font-sans: "ZT Nature", sans-serif;
+  --default-font-family: "ZT Nature", sans-serif;
+  --site-max: 1280px;
+  --site-padding: 40px;
+  /* Contêiner de 1280px com padding interno, centralizado sobre fundos completos. */
+  --site-inset: max(var(--site-padding), calc((100% - var(--site-max)) / 2 + var(--site-padding)));
+}
+
+body, button, input, textarea, select { font-family: var(--font-sans); }
+
+.value-section, .wallet-section, .stats-section, .fraaame-section,
+.projects-section, .process-timeline, .why-section, .gateways-section,
+.brand-hand-section, .faq-section, .site-footer {
+  box-sizing: border-box;
+  padding-inline: var(--site-inset);
+}
+
+.value-inner, .stats-container, .projects-grid, .process-timeline-inner,
+.why-grid, .gateways-panel, .gateways-features, .brand-hand-inner,
+.faq-card, .site-footer-inner {
+  width: 100%;
+  max-width: none;
+}
+.brand-hand-inner { padding-inline: 0; }
+.why-section { margin-inline: 0; }
+
+.creative-nav {
+  box-sizing: border-box;
+  width: min(100%, var(--site-max));
+  left: 50%;
+  transform: translateX(-50%);
+  padding-inline: var(--site-padding);
+}
+.creative-left {
+  top: auto;
+  bottom: 8.5%;
+  left: var(--site-inset);
+  width: min(560px, calc(50% - var(--site-inset) - 24px));
+}
+.creative-left p { max-width: 360px; }
+.creative-right {
+  bottom: 8.5%;
+  right: var(--site-inset);
+  width: min(370px, calc(50% - var(--site-inset) - 24px));
+}
+.creative-right h2 { font-size: clamp(36px, min(5vw, 9.5vh), 70px); }
+html:lang(es) .creative-right h2 { font-size: clamp(32px, min(4.5vw, 9vh), 62px); }
+.brand-hand-copy h2 { white-space: normal; }
+@media (min-width: 641px) {
+  .brand-hand-copy h2 { font-size: clamp(32px, 4vw, 56px); }
+}
+.wallet-headline {
+  width: min(700px, calc(100% - 2 * var(--site-inset)));
+  padding-inline: 0;
+}
+.wallet-left-copy { left: var(--site-inset); max-width: 300px; }
+.wallet-right-copy { right: var(--site-inset); width: min(240px, 22%); }
+
+@media (max-width: 767px) {
+  :root { --site-padding: 24px; }
+}
+@media (max-width: 640px) {
+  .creative-left {
+    left: var(--site-padding);
+    width: calc(100% - 2 * var(--site-padding));
+    bottom: 5.5%;
+  }
+  .wallet-headline { width: calc(100% - 2 * var(--site-padding)); }
+  .wallet-left-copy, .wallet-right-copy {
+    left: var(--site-padding);
+    right: var(--site-padding);
+    width: auto;
+    max-width: none;
+  }
+}

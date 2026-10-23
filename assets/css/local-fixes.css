@@ -1,0 +1,21 @@
+/* Correções locais, separadas dos estilos capturados. */
+/* O reveal horizontal da carteira excedia a tela entre 641 e 900 px. */
+.wallet-section { overflow-x: clip; }
+.project-video-close:focus-visible,
+.creative-burger:focus-visible { outline: 3px solid #74c8ff; outline-offset: 4px; }
+.lang-toggle-btn:focus-visible { outline: 2px solid #74c8ff; outline-offset: 3px; }
+/* Traduções mais longas não comprimem o círculo e a seta do orçamento. */
+.creative-cta-row { flex-wrap: wrap; }
+.creative-cta-row > .cta-btn { flex-shrink: 0; }
+
+/* Estado estático sem JavaScript e elementos montados antes pelo motor da página. */
+.preloader { display: none; }
+.js .preloader { display: grid; }
+.creative-mobile-menu[hidden] { display: none !important; }
+/* Mantém o rosto da foto eu.webp dentro do corte estreito da hero. */
+@media (max-width: 640px) {
+  .creative-hero, .creative-portrait { background-position: 52.5% center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .floating-bar, .faq-answer, .faq-toggle { transition-duration: 0s !important; }
+}
