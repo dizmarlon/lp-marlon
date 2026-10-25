@@ -103,7 +103,8 @@ body { overflow-wrap: break-word; }
 .process-list .process-step p { font-size: var(--copy-text); line-height: 1.6; max-width: 46ch; }
 .faq-section { padding-inline: var(--site-inset); }
 .faq-card { margin-inline: auto; }
-.faq-title { text-wrap: balance; font-size: clamp(32px, 3.6vw, 52px); }
+.faq-title { color: #f6f9fc; background: none; -webkit-text-fill-color: currentColor; text-wrap: balance; font-size: clamp(32px, 3.6vw, 52px); }
+.faq-row { background: #1a1a1c; }
 .faq-q-text { text-align: left; }
 .faq-answer-inner p { font-size: var(--copy-text); }
 .brand-hand-section { min-height: 0; }

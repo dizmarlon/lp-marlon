@@ -51,8 +51,8 @@
   --text-1:#fff;
   --text-2:#fff9;
   --text-3:#ffffff80;
-  --blue:#2a9be2;
-  --blue-glow:#0076c22e;
+  --blue:#003cfe;
+  --blue-glow:#003cfe2e;
   --font-sans:var(--font-dm-sans);
   --font-mono:var(--font-dm-mono);
   --text-h2:clamp(36px,4.2vw,54px);
@@ -182,7 +182,7 @@
   letter-spacing:.1em;
   text-transform:uppercase;
   color:var(--text-1);
-  background:linear-gradient(#9999991a,#2a9be214);
+  background:linear-gradient(#9999991a,#003cfe14);
   justify-self:start;
   align-items:center;
   gap:10px;
@@ -222,7 +222,7 @@
     content:"";
     z-index:-1;
     pointer-events:none;
-    background:linear-gradient(90deg,#2a9be200,#0076c2b3 60%,#0076c226) top/100% 1px no-repeat,linear-gradient(#0076c217,#ffffff04 45%,#0000 85%);
+    background:linear-gradient(90deg,#003cfe00,#003cfeb3 60%,#003cfe26) top/100% 1px no-repeat,linear-gradient(#003cfe17,#ffffff04 45%,#0000 85%);
     width:max(0px,50vw - 400px);
     height:220px;
     position:absolute;
@@ -239,7 +239,7 @@
   }
 }
 .pfs-root .pfs-btn {
-  --btn-bg:#2a9be2;
+  --btn-bg:#003cfe;
   --btn-fg:var(--white);
   --btn-border:#ffffff2e;
   border-radius:var(--radius-btn);
@@ -259,12 +259,12 @@
   font-weight:500;
   line-height:1;
   display:inline-flex;
-  box-shadow:0 8px 40px #0076c280,inset 0 1px #fff3
+  box-shadow:0 8px 40px #003cfe80,inset 0 1px #fff3
 }
 .pfs-root .pfs-btn:hover {
-  --btn-bg:#1a66ff;
+  --btn-bg:#003cfe;
   transform:translateY(-2px);
-  box-shadow:0 10px 50px #0076c2a6,inset 0 1px #ffffff40
+  box-shadow:0 10px 50px #003cfea6,inset 0 1px #ffffff40
 }
 .pfs-root .pfs-btn:active {
   transform:translateY(0)
@@ -423,9 +423,9 @@
   }
   .pfs-root .pfs-acc__panel.pfs-s.pfs-is-active {
     cursor:default;
-    border-color:#0076c273;
+    border-color:#003cfe73;
     flex:4 1 0;
-    box-shadow:0 0 0 1px #0076c226,0 24px 60px #0076c22e
+    box-shadow:0 0 0 1px #003cfe26,0 24px 60px #003cfe2e
   }
   .pfs-root .pfs-acc__panel.pfs-s:not(.pfs-is-active):hover {
     border-color:var(--border-strong)
@@ -451,7 +451,7 @@
     transition:color .4s
   }
   .pfs-root .pfs-acc__panel.pfs-s.pfs-is-active .pfs-acc__num.pfs-s {
-    color:#6cbfee;
+    color:#91aaff;
     align-self:flex-end
   }
   .pfs-root .pfs-acc__vtitle.pfs-s {
@@ -503,8 +503,8 @@
   --text-1: #f6f9fc;
   --text-2: #c4cdd8;
   --text-3: #9bacc0;
-  --blue: #2a9be2;
-  --blue-glow: #0076c22e;
+  --blue: #003cfe;
+  --blue-glow: #003cfe2e;
   --font-dm-sans: "ZT Nature", Arial, sans-serif;
   --font-dm-mono: "ZT Nature", Arial, sans-serif;
   --text-h2: clamp(32px, 3.6vw, 52px);
@@ -544,7 +544,7 @@
 .pfs-root .pfs-acc__content.pfs-s p.pfs-s { color: #dbe5ef; }
 .pfs-root .pfs-acc__panel.pfs-s:before { background: linear-gradient(#01040f00 15%, #01040fa8 50%, #01040ff5 84%); }
 .pfs-root .pfs-label { font-variant-numeric: tabular-nums; }
-.pfs-root .pfs-acc__panel:focus-visible { outline: 3px solid #6cbfee; outline-offset: 4px; }
+.pfs-root .pfs-acc__panel:focus-visible { outline: 3px solid #91aaff; outline-offset: 4px; }
 @media (max-width: 699px) {
   .pfs-root .pfs-acc__panel.pfs-s { min-height: 360px; }
   .pfs-root .pfs-acc__title.pfs-s { font-size: 26px; }

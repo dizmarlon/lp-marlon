@@ -2,6 +2,9 @@
 (function () {
   'use strict';
   const entries = [
+    ['Etapa', 'Step', 'Etapa'],
+    ['Quero meu projeto', 'I want my project', 'Quiero mi proyecto'],
+    ['Por que você deve escolher trabalhar comigo?', 'Why should you choose to work with me?', '¿Por qué deberías elegir trabajar conmigo?'],
     ['Experiência e atendimento em números', 'Experience and service in numbers', 'Experiencia y atención en cifras'],
     ['Anos de experiência', 'Years of experience', 'Años de experiencia'],
     ['Rodadas de ajustes', 'Rounds of revisions', 'Rondas de ajustes'],

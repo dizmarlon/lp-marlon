@@ -1,0 +1,90 @@
+/* Cinco etapas em duas linhas: três cards iguais, depois dois mais largos. */
+.process-timeline.process-bento {
+  --process-ink: #f6f9fc;
+  --process-muted: #b5bfce;
+  background: #03060d;
+  color: var(--process-ink);
+  padding-block: var(--copy-space);
+  overflow: hidden;
+}
+.process-bento h2 { max-width: 24ch; color: var(--process-ink); }
+.process-bento .process-intro { max-width: 68ch; margin-bottom: 44px; color: var(--process-muted); }
+.process-bento .process-list {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-rows: auto auto;
+  gap: 20px;
+}
+.process-bento .process-list .process-step {
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 24px;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  padding: clamp(24px, 2.2vw, 32px);
+  border: 1px solid #ffffff14;
+  border-radius: 22px;
+  background: #090d15;
+  opacity: 1;
+  transition: border-color .25s ease, background-color .25s ease;
+}
+.process-bento .process-list .process-step:hover { border-color: #91aaff55; background-color: #0d1320; }
+.process-bento .process-list .process-step:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
+.process-bento .process-list .process-step:nth-child(2) { grid-column: 3 / 5; grid-row: 1; }
+.process-bento .process-list .process-step:nth-child(3) { grid-column: 5 / 7; grid-row: 1; }
+.process-bento .process-list .process-step:nth-child(4) { grid-column: 1 / 4; grid-row: 2; }
+.process-bento .process-list .process-step:nth-child(5) { grid-column: 4 / 7; grid-row: 2; border-color: #003cfe80; background: linear-gradient(145deg, #003cfe26, #003cfe00 58%), #090d15; }
+.process-bento .process-bento-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.process-bento .process-bento-icon { width: 76px; height: auto; flex: 0 0 auto; }
+.process-bento .process-list .process-number {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: auto;
+  height: auto;
+  min-height: 32px;
+  margin: 0;
+  padding: 8px 11px;
+  border: 1px solid #ffffff14;
+  border-radius: 6px;
+  background: #ffffff04;
+  color: #dbe5f5;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: .12em;
+  white-space: nowrap;
+  text-transform: uppercase;
+  transform: none;
+}
+.process-bento .process-list .process-step-copy { display: flex; flex: 1; flex-direction: column; padding: 0; transform: none; }
+.process-bento .process-list .process-step h3 { margin: 0 0 16px; padding-bottom: 18px; border-bottom: 1px solid #ffffff12; font-size: clamp(20px, 1.6vw, 24px); font-weight: 500; line-height: 1.18; letter-spacing: -.02em; }
+.process-bento .process-list .process-step p { max-width: none; margin: 0; color: var(--process-muted); font-size: 16px; line-height: 1.6; }
+.process-bento .process-list .process-step:last-child p { margin-bottom: 24px; }
+.process-bento .process-step .whatsapp-cta { align-self: flex-start; margin-top: auto; }
+@media (max-width: 1100px) {
+  .process-bento .process-list { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; }
+  .process-bento .process-list .process-step:nth-child(n) { grid-column: auto; grid-row: auto; }
+  .process-bento .process-list .process-step:last-child { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+  .process-bento h2 { font-size: 28px; }
+  .process-bento .process-intro { margin-bottom: 32px; }
+  .process-bento .process-list { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .process-bento .process-list .process-step:nth-child(n) { grid-column: auto; padding: 24px; border-radius: 20px; gap: 24px; }
+  .process-bento .process-list .process-step h3 { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .process-bento .process-list .process-step { transition: none; }
+}
