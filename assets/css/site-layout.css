@@ -1,8 +1,8 @@
-/* Fontes fornecidas pelo dono, convertidas para WOFF2 sem alterar os glifos. */
-@font-face { font-family: "ZT Nature"; src: url("../fonts/zt-nature-regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+/* WOFF2 dos arquivos originais: contornos CFF, métricas e kerning preservados. */
+@font-face { font-family: "ZT Nature"; src: url("../fonts/zt-nature-regular.woff2?v=original-outlines-1") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
 @font-face { font-family: "ZT Nature"; src: url("../fonts/zt-nature-medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
-@font-face { font-family: "ZT Nature"; src: url("../fonts/zt-nature-semibold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
-@font-face { font-family: "ZT Nature"; src: url("../fonts/zt-nature-bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "ZT Nature"; src: url("../fonts/zt-nature-semibold.woff2?v=original-outlines-1") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "ZT Nature"; src: url("../fonts/zt-nature-bold.woff2?v=original-outlines-1") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
 
 :root {
   --font-sans: "ZT Nature", sans-serif;
@@ -14,8 +14,9 @@
 }
 
 body, button, input, textarea, select { font-family: var(--font-sans); }
+:root h1, :root h2 { font-weight: 500; }
 
-.value-section, .wallet-section, .stats-section, .fraaame-section,
+.value-section, .growth-section, .stats-section, .fraaame-section,
 .projects-section, .process-timeline, .why-section, .gateways-section,
 .brand-hand-section, .faq-section, .site-footer {
   box-sizing: border-box;
@@ -56,12 +57,12 @@ html:lang(es) .creative-right h2 { font-size: clamp(32px, min(4.5vw, 9vh), 62px)
 @media (min-width: 641px) {
   .brand-hand-copy h2 { font-size: clamp(32px, 4vw, 56px); }
 }
-.wallet-headline {
+.growth-headline {
   width: min(700px, calc(100% - 2 * var(--site-inset)));
   padding-inline: 0;
 }
-.wallet-left-copy { left: var(--site-inset); max-width: 300px; }
-.wallet-right-copy { right: var(--site-inset); width: min(240px, 22%); }
+.growth-left-copy { left: var(--site-inset); max-width: 300px; }
+.growth-right-copy { right: var(--site-inset); width: min(240px, 22%); }
 
 @media (max-width: 767px) {
   :root { --site-padding: 24px; }
@@ -72,8 +73,8 @@ html:lang(es) .creative-right h2 { font-size: clamp(32px, min(4.5vw, 9vh), 62px)
     width: calc(100% - 2 * var(--site-padding));
     bottom: 5.5%;
   }
-  .wallet-headline { width: calc(100% - 2 * var(--site-padding)); }
-  .wallet-left-copy, .wallet-right-copy {
+  .growth-headline { width: calc(100% - 2 * var(--site-padding)); }
+  .growth-left-copy, .growth-right-copy {
     left: var(--site-padding);
     right: var(--site-padding);
     width: auto;

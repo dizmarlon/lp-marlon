@@ -1,6 +1,6 @@
 /* Correções locais, separadas dos estilos capturados. */
 /* O reveal horizontal da carteira excedia a tela entre 641 e 900 px. */
-.wallet-section { overflow-x: clip; }
+.growth-section { overflow-x: clip; }
 .project-video-close:focus-visible,
 .creative-burger:focus-visible { outline: 3px solid #74c8ff; outline-offset: 4px; }
 .lang-toggle-btn:focus-visible { outline: 2px solid #74c8ff; outline-offset: 3px; }

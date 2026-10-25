@@ -33,7 +33,7 @@ function initLanguage() {
     return (source.match(/^\s*/)?.[0]||'')+result+(source.match(/\s*$/)?.[0]||'');
   }
   function text(node) {
-    if(node.parentElement?.closest(excluded+',.wallet-word'))return;
+    if(node.parentElement?.closest(excluded+',.growth-word'))return;
     const current=node.nodeValue??'';
     let record=texts.get(node);
     if(!record||current!==record.rendered){record={source:current,rendered:current};texts.set(node,record);}
@@ -64,19 +64,19 @@ function initLanguage() {
       if(node.nodeType===Node.TEXT_NODE)text(node);else attrs(node);
     }
   }
-  const walletPT=['Um novo site pode','fazer sua empresa','vender muito mais'];
-  const walletWords={
+  const growthPT=['Um novo site pode','fazer sua empresa','vender muito mais'];
+  const growthWords={
     en:[['A ','new ','website ','can'],['make ','your ','company'],['sell ','much ','more']],
     es:[['Un ','nuevo ','sitio ','puede'],['hacer que ','tu ','empresa'],['venda ','mucho ','más']]
   };
-  const walletLines=[...document.querySelectorAll('.wallet-line')].map(line=>({
+  const growthLines=[...document.querySelectorAll('.growth-line')].map(line=>({
     line,source:line.textContent.replace(/\s+/g,' ').trim(),rendered:line.textContent,
-    words:[...line.querySelectorAll('.wallet-word')].map(element=>({element,nodes:[...element.childNodes].map(n=>n.cloneNode(true))}))
+    words:[...line.querySelectorAll('.growth-word')].map(element=>({element,nodes:[...element.childNodes].map(n=>n.cloneNode(true))}))
   }));
-  function wallet() {
-    walletLines.forEach((record,index)=>{
-      if(record.source!==walletPT[index]||record.line.textContent!==record.rendered)return;
-      const values=walletWords[language]?.[index];
+  function growth() {
+    growthLines.forEach((record,index)=>{
+      if(record.source!==growthPT[index]||record.line.textContent!==record.rendered)return;
+      const values=growthWords[language]?.[index];
       record.words.forEach(({element,nodes},i)=>{
         if(!values){element.replaceChildren(...nodes.map(n=>n.cloneNode(true)));return;}
         const value=values[i];
@@ -98,7 +98,7 @@ function initLanguage() {
     if(!Object.hasOwn(languages,value))return;
     observer.disconnect();language=value;
     document.documentElement.lang=languages[value].tag;
-    tree(document.body);wallet();
+    tree(document.body);growth();
     tree(document.querySelector('title'));
     document.querySelectorAll('meta[name="description"],meta[property="og:description"],meta[name="twitter:description"],meta[property="og:title"],meta[name="twitter:title"]').forEach(meta=>attribute(meta,'content'));
     document.querySelector('.lang-toggle')?.setAttribute('aria-label',languages[value].label);

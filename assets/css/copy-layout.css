@@ -4,13 +4,31 @@ html { scroll-padding-top: 32px; }
 body { overflow-wrap: break-word; }
 .creative-nav { justify-content: flex-end; }
 .creative-nav-actions { margin-left: auto; }
-.creative-left { top: auto; width: min(500px, calc(50% - var(--site-inset) - 12px)); bottom: 8%; }
-.creative-left h1 { font-size: clamp(32px, 3.2vw, 46px); line-height: 1.08; text-wrap: balance; }
-.creative-left p, .creative-right p { font-size: 20px; line-height: 1.5; text-wrap: pretty; }
-.creative-left > p { max-width: 43ch; margin-block: 20px; }
-.creative-right { width: min(560px, calc(50% - var(--site-inset) - 12px)); bottom: 8%; }
-.creative-right h2, html:lang(es) .creative-right h2 { font-size: 58px; line-height: 1.06; letter-spacing: -.02em; overflow-wrap: normal; word-break: normal; text-wrap: balance; }
-.creative-right p { max-width: 31ch; }
+.creative-content {
+  position: absolute;
+  z-index: 4;
+  left: var(--site-inset);
+  right: var(--site-inset);
+  bottom: 8%;
+  display: grid;
+  grid-template-columns: minmax(0, 600px) minmax(0, 500px);
+  align-items: end;
+  justify-content: space-between;
+  gap: 40px;
+}
+.creative-content > .creative-left, .creative-content > .creative-right {
+  position: static;
+  display: block;
+  width: auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+.creative-content > .creative-left { text-align: left; }
+.creative-left h1 { font-size: 44px; line-height: 1.08; text-wrap: balance; }
+.creative-right p { max-width: none; font-size: 20px; line-height: 1.5; text-wrap: pretty; }
+.creative-right .hero-subtitle { margin: 0; font-size: 24px; line-height: 1.35; text-wrap: balance; }
+.creative-right .creative-cta-row { margin-top: 24px; justify-content: flex-end; }
 .creative-hero::before { background: linear-gradient(90deg, #01040f94, transparent 48%, #01040f45), linear-gradient(0deg, #01040ff5, #01040f66 45%, transparent 70%); }
 .creative-mobile-menu .cta-primary, .creative-mobile-menu .cta-label { color: #071d38; }
 .creative-cta-row { gap: 12px; }
@@ -74,10 +92,14 @@ body { overflow-wrap: break-word; }
 .preloader-name { font-size: clamp(36px, 10vw, 120px); text-align: center; }
 a:focus-visible, button:focus-visible { outline: 3px solid #48a7e6; outline-offset: 5px; }
 @media (max-width: 1024px) and (min-width: 641px) {
-  .creative-left { width: min(420px, calc(50% - var(--site-inset) - 24px)); }
   .creative-left h1 { font-size: 35px; }
-  .creative-right { width: min(430px, calc(50% - var(--site-inset) - 24px)); }
-  .creative-right h2, html:lang(es) .creative-right h2 { font-size: clamp(32px, 4.3vw, 44px); }
+  .creative-right .hero-subtitle { font-size: 20px; }
+  .creative-right p { font-size: 18px; }
+}
+@media (min-width: 1025px) {
+  .creative-content { bottom: 12%; }
+  .creative-right .hero-subtitle { display: none; }
+  .value-inner h2 { font-size: 44px; }
 }
 @media (max-width: 800px) {
   .value-inner { grid-template-columns: 1fr; gap: 28px; }
@@ -87,10 +109,14 @@ a:focus-visible, button:focus-visible { outline: 3px solid #48a7e6; outline-offs
   .process-list .process-step:last-child { grid-column: auto; max-width: none; }
 }
 @media (max-width: 640px) {
-  .creative-hero { height: 92svh; min-height: 580px; padding-top: 0; }
-  .creative-left { position: absolute; left: var(--site-padding); right: auto; top: auto; bottom: 7%; margin: 0; width: calc(100% - 2 * var(--site-padding)); padding: 0; text-align: left; }
+  .creative-hero { height: 92svh; min-height: 680px; padding-top: 0; }
+  .creative-content { left: var(--site-padding); right: var(--site-padding); bottom: 5.5%; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .creative-content > .creative-right { text-align: left; }
+  .creative-right .hero-description { display: none; }
   .creative-left h1 { font-size: clamp(32px, 8.5vw, 44px); line-height: 1.08; }
-  .creative-left > p { font-size: 18px; text-align: left; line-height: 1.5; margin-block: 18px; max-width: none; }
+  .creative-right .hero-subtitle { font-size: 18px; line-height: 1.5; }
+  .creative-right p { margin: 14px 0 0; font-size: 16px; line-height: 1.5; }
+  .creative-right .creative-cta-row { margin-top: 20px; justify-content: flex-start; row-gap: 12px; }
   .creative-portrait, .creative-hero { background-size: cover; background-position: 52.5% center; }
   .creative-portrait { height: auto; }
   .creative-hero::before { background: linear-gradient(#00020a6b, #0000 26% 48%, #000000b8 72%, #000000f5); }

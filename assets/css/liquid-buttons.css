@@ -1,0 +1,109 @@
+/* Shared Liquid Metal button. Paper's shader supplies the moving chrome border. */
+html[data-site-static] body .whatsapp-cta {
+  --liquid-body: #003CFE;
+  --liquid-hover: #003CFE;
+  --liquid-ink: #ffffff;
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+  box-sizing: border-box;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  min-height: 52px;
+  padding: 3px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #8a8a8f, #f5f6fa 18%, #565c69 34%, #dfe5f5 49%, #858591 64%, #f8fafc 82%, #666d7c);
+  color: var(--liquid-ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: normal;
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+  cursor: pointer;
+  box-shadow: 0 5px 18px #07152926;
+  transition: transform .25s ease, box-shadow .3s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+html[data-site-static] body .whatsapp-cta:hover {
+  color: var(--liquid-ink);
+  background-color: transparent;
+  transform: none;
+  box-shadow: 0 7px 24px #07152933;
+}
+html[data-site-static] body .whatsapp-cta:active { transform: scale(.95); }
+html[data-site-static] body .whatsapp-cta:focus-visible { outline: 3px solid #289ee8; outline-offset: 4px; }
+html[data-site-static] body .whatsapp-cta:disabled { cursor: default; opacity: .5; }
+html[data-site-static] body .whatsapp-cta > .liquid-metal-layer {
+  position: absolute;
+  inset: -24px;
+  z-index: 0;
+  display: block;
+  width: auto;
+  height: auto;
+  margin: 0;
+  border-radius: 0;
+  background: none;
+  pointer-events: none;
+  transform: none;
+  transition: none;
+}
+html[data-site-static] body .liquid-metal-layer > canvas { display: block; width: 100%; height: 100%; }
+html[data-site-static] body .whatsapp-cta > .liquid-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-width: 0;
+  width: auto;
+  height: auto;
+  padding: 6px 24px 6px 6px;
+  border-radius: inherit;
+  background: var(--liquid-body);
+  color: var(--liquid-ink);
+  transition: background-color .3s ease;
+  transform: none;
+}
+html[data-site-static] body .whatsapp-cta:is(:hover, :focus-visible) > .liquid-body { background: var(--liquid-hover); }
+html[data-site-static] body .whatsapp-cta .liquid-icon {
+  display: grid;
+  flex: 0 0 32px;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #003CFE;
+  transform: none;
+  transition: color .3s ease, background-color .3s ease;
+}
+html[data-site-static] body .whatsapp-cta:is(:hover, :focus-visible) .liquid-icon { background: #ffffff; color: #003CFE; }
+html[data-site-static] body .whatsapp-cta .liquid-arrow { width: 16px; height: 16px; transform: rotate(0); transition: transform .3s ease; }
+html[data-site-static] body .whatsapp-cta:is(:hover, :focus-visible) .liquid-arrow { transform: rotate(-45deg); }
+html[data-site-static] body .whatsapp-cta .liquid-label { position: static; min-width: 0; padding: 0; color: inherit; font: inherit; line-height: inherit; white-space: normal; }
+@media (max-width: 640px) {
+  html[data-site-static] body .whatsapp-cta { font-size: 13px; }
+  html[data-site-static] body .whatsapp-cta > .liquid-body { gap: 9px; padding-right: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-site-static] body .whatsapp-cta, html[data-site-static] body .whatsapp-cta * { transition: none !important; }
+  html[data-site-static] body .whatsapp-cta:active, html[data-site-static] body .whatsapp-cta .liquid-arrow { transform: none !important; }
+}
+@media (forced-colors: active) {
+  html[data-site-static] body .whatsapp-cta { border: 2px solid ButtonText; background: ButtonFace; color: ButtonText; box-shadow: none; }
+  html[data-site-static] body .whatsapp-cta > .liquid-body, html[data-site-static] body .whatsapp-cta .liquid-icon { background: ButtonFace; color: ButtonText; }
+  html[data-site-static] body .whatsapp-cta > .liquid-metal-layer { display: none; }
+}

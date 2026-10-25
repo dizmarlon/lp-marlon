@@ -107,42 +107,12 @@ function faq() {
   if (trigger.progress > 0 || trigger.scroll() > trigger.start) timeline.progress(1);
 }
 
-function floatingBar(reduced) {
-  const bar = document.querySelector('.floating-bar');
-  const link = bar.querySelector('a');
-  let active = false, frame = 0;
-  const contrast = () => {
-    frame = 0;
-    const rect = bar.getBoundingClientRect();
-    const light = active && [...document.querySelectorAll('.value-section, .projects-section, .process-timeline')].some(section => {
-      const other = section.getBoundingClientRect();
-      return rect.left < other.right && rect.right > other.left && rect.top < other.bottom && rect.bottom > other.top;
-    });
-    bar.classList.toggle('floating-bar--claro', light);
-  };
-  const update = value => {
-    active = value; bar.classList.toggle('floating-bar--ativo', value);
-    bar.setAttribute('aria-hidden', String(!value)); link.tabIndex = value ? 0 : -1;
-    contrast();
-  };
-  if (reduced) {
-    const visibility = () => update(document.querySelector('.value-section').getBoundingClientRect().top <= innerHeight*.7 && document.querySelector('.site-footer').getBoundingClientRect().top > innerHeight*.85);
-    addEventListener('scroll', visibility, { passive: true }); visibility();
-  } else {
-    ScrollTrigger.create({ trigger: '.value-section', start: 'top 70%', onEnter: () => update(true), onLeaveBack: () => update(false) });
-    ScrollTrigger.create({ trigger: '.site-footer', start: 'top 85%', onEnter: () => update(false), onLeaveBack: () => update(true) });
-  }
-  const schedule = () => { if (!frame) frame = requestAnimationFrame(contrast); };
-  addEventListener('scroll', schedule, { passive: true }); addEventListener('resize', schedule);
-  setInterval(contrast, 200);
-}
-
-function walletAnimations() {
-  const section = document.querySelector('.wallet-section');
+function growthAnimations() {
+  const section = document.querySelector('.growth-section');
   if (!section) return;
-  const headline = section.querySelector('.wallet-headline');
-  const words = headline.querySelectorAll('.wallet-word');
-  const image = section.querySelector('.wallet-art');
+  const headline = section.querySelector('.growth-headline');
+  const words = headline.querySelectorAll('.growth-word');
+  const image = section.querySelector('.growth-art');
   const media = gsap.matchMedia();
   media.add({
     all: 'all',
@@ -151,15 +121,15 @@ function walletAnimations() {
     reduce: '(prefers-reduced-motion: reduce)'
   }, context => {
     const { small, touch, reduce } = context.conditions;
-    section.dataset.walletAnimation = reduce ? 'reduced' : small || touch ? 'entrance' : 'scroll';
-    if (reduce) return () => { delete section.dataset.walletAnimation; };
+    section.dataset.growthAnimation = reduce ? 'reduced' : small || touch ? 'entrance' : 'scroll';
+    if (reduce) return () => { delete section.dataset.growthAnimation; };
 
     if (small || touch) {
       // No celular, cada parte entra quando ela própria chega à tela.
       // A rolagem por toque pode atravessar toda a faixa do scrub em um gesto.
       gsap.fromTo(words, { opacity: .12 }, { opacity: 1, stagger: .06, duration: .6, ease: 'power2.out',
         scrollTrigger: { trigger: headline, start: 'top 88%', once: true } });
-      ['.wallet-left-copy', '.wallet-right-copy'].forEach((selector, index) => {
+      ['.growth-left-copy', '.growth-right-copy'].forEach((selector, index) => {
         const element = section.querySelector(selector);
         gsap.fromTo(element, { autoAlpha: 0, x: index ? 28 : -28 }, { autoAlpha: 1, x: 0, duration: .75, ease: 'power3.out',
           scrollTrigger: { trigger: element, start: 'top 88%', once: true } });
@@ -172,21 +142,21 @@ function walletAnimations() {
       const playImage = () => { if (entered && image.complete && image.naturalWidth > 0) imageTween.play(); };
       const imageLoaded = () => { ScrollTrigger.refresh(); playImage(); };
       image.addEventListener('load', imageLoaded);
-      ScrollTrigger.create({ trigger: section.querySelector('.wallet-art-position'), start: 'top 90%', once: true,
+      ScrollTrigger.create({ trigger: section.querySelector('.growth-art-position'), start: 'top 90%', once: true,
         onEnter: () => { entered = true; playImage(); } });
       return () => {
         image.removeEventListener('load', imageLoaded);
-        delete section.dataset.walletAnimation;
+        delete section.dataset.growthAnimation;
       };
     }
 
     const timeline = gsap.timeline({ scrollTrigger: { trigger: headline, start: 'top 85%', end: 'top 30%', scrub: .5 } });
     timeline.fromTo(words, { opacity: .12 }, { opacity: 1, stagger: .12, duration: 1, ease: 'none' });
-    timeline.fromTo(section.querySelector('.wallet-left-copy'), { opacity: 0, x: -64 }, { opacity: 1, x: 0, duration: 1.4, ease: 'power1.out' }, '>-0.02');
-    timeline.fromTo(section.querySelector('.wallet-right-copy'), { opacity: 0, x: 64 }, { opacity: 1, x: 0, duration: 1.4, ease: 'power1.out' }, '<0.12');
+    timeline.fromTo(section.querySelector('.growth-left-copy'), { opacity: 0, x: -64 }, { opacity: 1, x: 0, duration: 1.4, ease: 'power1.out' }, '>-0.02');
+    timeline.fromTo(section.querySelector('.growth-right-copy'), { opacity: 0, x: 64 }, { opacity: 1, x: 0, duration: 1.4, ease: 'power1.out' }, '<0.12');
     gsap.fromTo(image, { scale: .7, opacity: 0 }, { scale: 1, opacity: 1, ease: 'none',
       scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom bottom', scrub: .5 } });
-    return () => { delete section.dataset.walletAnimation; };
+    return () => { delete section.dataset.growthAnimation; };
   });
 }
 
@@ -201,10 +171,9 @@ function initAnimations() {
   ScrollTrigger.config({ ignoreMobileResize: true });
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   // Os gatilhos da terceira seção são recalculados também ao mudar a preferência de movimento.
-  walletAnimations();
+  growthAnimations();
   counters();
   if (!reduced) { hand(); faq(); }
-  floatingBar(reduced);
   if (!reduced) projectAnimations();
   const refresh = () => ScrollTrigger.refresh();
   addEventListener('load', refresh, { once: true });
