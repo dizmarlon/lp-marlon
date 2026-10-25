@@ -107,6 +107,50 @@ function faq() {
   if (trigger.progress > 0 || trigger.scroll() > trigger.start) timeline.progress(1);
 }
 
+function valueTextReveal() {
+  const heading = document.getElementById('value-heading');
+  if (!heading) return;
+  const label = document.createElement('span');
+  label.className = 'value-reveal-label';
+  // Keep the original text nodes so the language switch retains their source.
+  label.append(...heading.childNodes);
+  const visual = document.createElement('span');
+  visual.className = 'value-reveal-visual';
+  visual.setAttribute('aria-hidden', 'true');
+  visual.dataset.noTranslate = 'true';
+  heading.append(label, visual);
+  let media;
+  function rebuild() {
+    media?.revert();
+    const fragment = document.createDocumentFragment();
+    for (const part of label.textContent.match(/\S+|\s+/g) || []) {
+      if (/^\s+$/.test(part)) fragment.append(document.createTextNode(part));
+      else {
+        const word = document.createElement('span');
+        word.className = 'value-reveal-word'; word.textContent = part;
+        fragment.append(word);
+      }
+    }
+    visual.replaceChildren(fragment);
+    const words = visual.querySelectorAll('.value-reveal-word');
+    media = gsap.matchMedia();
+    media.add({ all: 'all', reduce: '(prefers-reduced-motion: reduce)', small: '(max-width: 760px)', touch: '(pointer: coarse)' }, context => {
+      if (context.conditions.reduce) return;
+      const entrance = context.conditions.small || context.conditions.touch;
+      gsap.fromTo(words, { opacity: .18 }, {
+        opacity: 1, duration: entrance ? .6 : 1,
+        stagger: entrance ? { amount: .75 } : .08,
+        ease: entrance ? 'power2.out' : 'none',
+        scrollTrigger: { id: 'value-text-reveal', trigger: heading, start: 'top 85%',
+          ...(entrance ? { once: true } : { end: 'bottom 60%', scrub: .45 }) }
+      });
+    });
+    ScrollTrigger.refresh();
+  }
+  rebuild();
+  addEventListener('site:language', rebuild);
+}
+
 function growthAnimations() {
   const section = document.querySelector('.growth-section');
   if (!section) return;
@@ -171,6 +215,7 @@ function initAnimations() {
   ScrollTrigger.config({ ignoreMobileResize: true });
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   // Os gatilhos da terceira seção são recalculados também ao mudar a preferência de movimento.
+  valueTextReveal();
   growthAnimations();
   counters();
   if (!reduced) { hand(); faq(); }
