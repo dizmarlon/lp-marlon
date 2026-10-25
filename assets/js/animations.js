@@ -160,7 +160,7 @@ function growthAnimations() {
   const media = gsap.matchMedia();
   media.add({
     all: 'all',
-    small: '(max-width: 760px)',
+    small: '(max-width: 1100px)',
     touch: '(pointer: coarse)',
     reduce: '(prefers-reduced-motion: reduce)'
   }, context => {
