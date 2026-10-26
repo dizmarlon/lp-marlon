@@ -71,6 +71,7 @@ body { overflow-wrap: break-word; }
 .stats-container { padding: 32px 24px; }
 .stats-grid { align-items: start; gap: 32px 24px; }
 .stats-item { text-align: center; }
+.stats-value { color: #f6f9fc; background: none; -webkit-text-fill-color: currentColor; filter: none; }
 .stats-label { margin-top: 12px; font-size: clamp(13px, 1vw, 16px); line-height: 1.4; }
 .projects-headline { max-width: 22ch; margin-inline: auto; text-wrap: balance; }
 .projects-sub { max-width: 64ch; font-size: var(--copy-text); line-height: 1.65; }
@@ -127,6 +128,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid #48a7e6; outline-offs
 @media (max-width: 1024px) and (min-width: 641px) {
   .creative-left h1 { font-size: 35px; }
   .creative-right .hero-subtitle { font-size: 20px; }
+  .creative-right .hero-description { display: none; }
   .creative-right p { font-size: 18px; }
 }
 @media (min-width: 1025px) {
