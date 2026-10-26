@@ -8,14 +8,11 @@ try {
   initLanguage();
   initAnimations();
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const touch=matchMedia('(pointer: coarse)').matches;
-  const oldIOS=/OS (\d+)[_\d]* like Mac OS X/.exec(navigator.userAgent);
   const lenis=reduced?null:new Lenis({
-    lerp:touch?.14:.1,
+    lerp:.1,
     smoothWheel:true,
-    syncTouch:touch&&!(oldIOS&&Number(oldIOS[1])<16),
-    syncTouchLerp:.14,
-    touchInertiaExponent:1.25,
+    // Toque nativo preserva a inércia do aparelho e o gesto de puxar para atualizar.
+    syncTouch:false,
     autoRaf:false,
     stopInertiaOnNavigate:true
   });

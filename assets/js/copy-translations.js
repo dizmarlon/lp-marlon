@@ -77,4 +77,6 @@
     window.SiteModules.translations[pt] = en;
     window.SiteModules.translationsES[pt] = es;
   });
+  window.SiteModules.translations['Conversar pelo WhatsApp'] = 'Chat on WhatsApp';
+  window.SiteModules.translationsES['Conversar pelo WhatsApp'] = 'Conversar por WhatsApp';
 })();
