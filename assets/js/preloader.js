@@ -6,7 +6,7 @@ const { gsap } = window.SiteModules;
 function resources() {
   const images = new Set(), videos = new Set();
   document.querySelectorAll('img').forEach(image => { image.loading = 'eager'; if (image.currentSrc || image.src) images.add(image.currentSrc || image.src); });
-  document.querySelectorAll('video:not([data-why-video])').forEach(video => {
+  document.querySelectorAll('video:not([data-why-video]):not([data-brand-video])').forEach(video => {
     video.muted = true; video.preload = 'auto';
     if(matchMedia('(prefers-reduced-motion: reduce)').matches){video.autoplay=false;video.pause();}
     else video.play().catch(() => {});

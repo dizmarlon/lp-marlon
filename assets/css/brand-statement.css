@@ -1,0 +1,88 @@
+/* Marca em relevo sobre o vídeo, com o espaçamento vertical padrão do site. */
+.brand-statement { box-sizing: border-box; padding: var(--copy-space, 96px) clamp(20px, 3vw, 48px); background: #03060d; }
+.brand-statement-panel {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(36px, 4vw, 56px);
+  width: 100%;
+  max-width: 1720px;
+  min-height: 620px;
+  margin: 0 auto;
+  padding: clamp(64px, 6vw, 96px) 32px;
+  overflow: hidden;
+  border: 1px solid #ffffff1f;
+  border-radius: 32px;
+  background: #02091d;
+}
+.brand-statement-video { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.brand-statement-title {
+  width: 100%;
+  max-width: 22ch;
+  margin: 0;
+  color: #fff;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-sans, "ZT Nature", sans-serif);
+  font-size: clamp(32px, 4vw, 58px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -.025em;
+  text-align: center;
+  text-wrap: balance;
+}
+.brand-badge { flex: 0 0 auto; width: clamp(164px, 15vw, 212px); aspect-ratio: 1; perspective: 900px; }
+.brand-badge-motion {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(8deg) rotateY(-10deg);
+  animation: brand-badge-shiver .22s linear infinite;
+  animation-play-state: paused;
+}
+.brand-statement[data-brand-active] .brand-badge-motion { animation-play-state: running; }
+.brand-badge-motion::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 23%;
+  background: linear-gradient(135deg, #326eff, #001958 80%);
+  transform: translate3d(2px, 9px, -8px);
+  box-shadow: 0 26px 42px #0009;
+}
+.brand-badge-face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid #a5d7ffc9;
+  border-radius: 23%;
+  background: linear-gradient(135deg, #c8f2ff, #4d8fff 18%, #0626a4 65%, #40adff);
+  box-shadow: inset 0 2px 2px #effbffff, inset -2px -3px 5px #001751, 0 -2px 8px #7ed0ff80, 0 0 38px #003cfe52;
+}
+.brand-badge-face img { position: absolute; inset: 4px; display: block; width: calc(100% - 8px); height: calc(100% - 8px); border-radius: 21%; }
+.brand-badge-face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(135deg, #e8faff63, #ffffff05 28%, #ffffff00 46%, #e2f7ff17 48%, #ffffff00 51%, #ffffff00 77%, #c4f5ff2e);
+  box-shadow: inset 1px 1px 2px #ffffffa6, inset -1px -1px 2px #6cd0ff80;
+}
+@keyframes brand-badge-shiver {
+  0%, 100% { transform: translate3d(-.8px, .4px, 0) rotateX(8deg) rotateY(-10deg) rotateZ(-.9deg); }
+  25% { transform: translate3d(.3px, -.6px, 0) rotateX(8.6deg) rotateY(-9.4deg) rotateZ(.6deg); }
+  50% { transform: translate3d(.8px, .4px, 0) rotateX(7.4deg) rotateY(-10.6deg) rotateZ(.9deg); }
+  75% { transform: translate3d(-.3px, -.4px, 0) rotateX(8.3deg) rotateY(-9.7deg) rotateZ(-.6deg); }
+}
+@media (max-width: 640px) {
+  .brand-statement-panel { min-height: 500px; padding: 60px 24px; border-radius: 24px; }
+  .brand-statement-title { font-size: 32px; }
+  .brand-badge { width: 164px; }
+}
+@media (prefers-reduced-motion: reduce) { .brand-badge-motion { animation: none; } }

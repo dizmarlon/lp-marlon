@@ -2,6 +2,8 @@
 (function () {
   'use strict';
   const entries = [
+    ['Vamos fazer sua marca ser escolhida?', 'Shall we make your brand the one people choose?', '¿Hacemos que elijan tu marca?'],
+    ['Ícone da marca', 'Brand icon', 'Icono de la marca'],
     ['Etapa', 'Step', 'Etapa'],
     ['Quero meu projeto', 'I want my project', 'Quiero mi proyecto'],
     ['Por que você deve escolher trabalhar comigo?', 'Why should you choose to work with me?', '¿Por qué deberías elegir trabajar conmigo?'],
