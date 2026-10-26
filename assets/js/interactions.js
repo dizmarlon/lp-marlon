@@ -23,8 +23,8 @@ function initInteractions(lenis) {
     const element = document.getElementById(target.slice(1));
     if (!element) return;
     event.preventDefault(); setMenu(false);
-    if (target === '#top') window.scrollTo({ top:0, behavior:reduced() ? 'instant' : 'smooth' });
-    else element.scrollIntoView({ behavior:reduced() ? 'instant' : 'smooth' });
+    if (lenis && !reduced()) lenis.scrollTo(element, { offset: target === '#top' ? 0 : -32 });
+    else element.scrollIntoView({ behavior:'instant' });
     // A referência atualiza a pílula ao clicar nos quatro itens do cabeçalho.
     if (anchor.closest('.creative-pill, .creative-mobile-menu, .creative-cta-row')) {
       document.querySelectorAll('.creative-pill a').forEach(link => {
