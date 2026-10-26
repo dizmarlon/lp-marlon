@@ -218,6 +218,7 @@ function initAnimations() {
   valueTextReveal();
   growthAnimations();
   counters();
+  window.SiteModules.initPhoneTransition?.();
   if (!reduced) { hand(); faq(); }
   if (!reduced) projectAnimations();
   const refresh = () => ScrollTrigger.refresh();

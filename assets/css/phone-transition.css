@@ -1,0 +1,58 @@
+/* A tela do smartphone se torna o fundo da seção seguinte. */
+:root { --phone-viewport: 100svh; }
+.pfs-root .pfs-services.pfs-s { padding-bottom: clamp(40px, 4vw, 64px); }
+.phone-transition { position: relative; z-index: 2; pointer-events: none; }
+.phone-transition-stage {
+  position: relative;
+  width: 100%;
+  height: clamp(340px, 80svh, 800px);
+  overflow: hidden;
+  perspective: 1600px;
+}
+.phone-transition[data-phone-active] .phone-transition-stage { height: var(--phone-viewport); }
+.phone-transition-backdrop { position: absolute; inset: 0; background: #03060d; }
+.phone-transition-device {
+  position: absolute;
+  top: clamp(160px, 28svh, 280px);
+  left: 50%;
+  width: min(1100px, 88vw);
+  transform: translate(-50.8%, -35.1%);
+  transform-origin: 50.8% 35.1%;
+}
+.phone-transition-device img { display: block; width: 100%; height: auto; max-width: none; }
+.phone-transition-cue {
+  position: absolute;
+  bottom: clamp(28px, 6vh, 64px);
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transform: translateX(-50%);
+  color: #c4cdd8;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.phone-transition-cue svg { width: 18px; height: 18px; color: #7392ff; }
+.phone-reveal-content { position: relative; z-index: 1; background: #fff; }
+.phone-transition[data-phone-active] + .phone-reveal-content {
+  margin-top: calc(-1 * var(--phone-viewport));
+}
+.phone-transition[data-phone-active] + .phone-reveal-content::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: calc(-1 * var(--phone-viewport));
+  left: 0;
+  right: 0;
+  height: var(--phone-viewport);
+  background: #fff;
+}
+@media (max-width: 640px) {
+  .phone-transition-device {
+    width: min(520px, 112vw);
+    transform: translate(-50.1%, -39.5%);
+    transform-origin: 50.1% 39.5%;
+  }
+}
+@media (max-height: 600px) { .phone-transition-cue { display: none; } }

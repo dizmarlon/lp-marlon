@@ -1,17 +1,18 @@
 /* Seção original do clone, com o contêiner e a identidade atuais do site. */
 .why-section {
-  --why-accent: #003cfe;
   margin-block: 0;
   border-radius: 0;
   padding-block: var(--copy-space, 96px);
-  background: #03060d;
-  color: #f6f9fc;
+  background: #fff;
+  color: #0a0f1e;
   font-family: var(--font-sans, "ZT Nature", sans-serif);
 }
-.why-section .why-head { max-width: 600px; margin: 0 auto clamp(40px, 5vw, 64px); }
+.why-section .why-head { max-width: 800px; margin: 0 auto clamp(40px, 5vw, 64px); }
 .why-section .why-headline {
-  margin: 0;
-  color: #f6f9fc;
+  max-width: 16em;
+  margin: 0 auto;
+  text-align: center;
+  color: #0a0f1e;
   background: none;
   -webkit-text-fill-color: currentColor;
   font-size: clamp(32px, 3.4vw, 52px);
@@ -32,11 +33,12 @@
   min-width: 0;
   min-height: 520px;
   padding: 48px 24px 190px;
+  border: 1px solid #3b424e;
   border-radius: 24px;
   background: #040710;
-  box-shadow: 0 24px 60px -40px #003cfe73;
+  box-shadow: none;
 }
-.why-section .why-card::before { padding: 1px; background: #003cfe99; }
+.why-section .why-card::before { display: none; }
 .why-section .why-card-media { object-position: center bottom; }
 .why-section .why-card h3 {
   margin: 0 0 18px;
@@ -48,7 +50,6 @@
   text-wrap: balance;
 }
 .why-section .why-card-text { color: #c4cdd8; font-size: 16px; line-height: 1.55; text-wrap: pretty; }
-.why-section .why-card-glow { height: 20%; bottom: -10%; left: 0; right: 0; filter: blur(40px); background: #003cfe33; }
 .why-section .why-cta-row { margin-top: clamp(36px, 4vw, 56px); }
 @media (max-width: 900px) {
   .why-section .why-grid { grid-template-columns: minmax(0, 1fr); max-width: 560px; gap: 24px; }
