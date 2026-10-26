@@ -1,5 +1,6 @@
 /* A tela do smartphone se torna o fundo da seção seguinte. */
-:root { --phone-viewport: 100svh; }
+:root { --phone-viewport: 100vh; }
+@supports (height: 100lvh) { :root { --phone-viewport: 100lvh; } }
 .pfs-root .pfs-services.pfs-s { padding-bottom: clamp(40px, 4vw, 64px); }
 .phone-transition { position: relative; z-index: 2; pointer-events: none; }
 .phone-transition-stage {
@@ -7,9 +8,10 @@
   width: 100%;
   height: clamp(340px, 80svh, 800px);
   overflow: hidden;
-  perspective: 1600px;
 }
 .phone-transition[data-phone-active] .phone-transition-stage { height: var(--phone-viewport); }
+.phone-transition[data-phone-complete] .phone-transition-stage { visibility: hidden; }
+.phone-transition-scene { position: absolute; inset: 0; overflow: hidden; }
 .phone-transition-backdrop { position: absolute; inset: 0; background: #03060d; }
 .phone-transition-device {
   position: absolute;
@@ -49,7 +51,9 @@
   background: #fff;
 }
 @media (max-width: 640px) {
+  .pfs-root .pfs-services.pfs-s { padding-bottom: 72px; }
   .phone-transition-device {
+    top: 50%;
     width: min(520px, 112vw);
     transform: translate(-50.1%, -39.5%);
     transform-origin: 50.1% 39.5%;
