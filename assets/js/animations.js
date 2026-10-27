@@ -221,11 +221,15 @@ function initAnimations() {
   window.SiteModules.initPhoneTransition?.();
   if (!reduced) { hand(); faq(); }
   if (!reduced) projectAnimations();
-  const refresh = () => ScrollTrigger.refresh();
+  let refreshPending = false;
+  const refresh = () => {
+    if (refreshPending) return;
+    refreshPending = true;
+    requestAnimationFrame(() => { refreshPending = false; ScrollTrigger.refresh(); });
+  };
   addEventListener('load', refresh, { once: true });
   addEventListener('preloader:done', refresh, { once: true });
   document.fonts.ready.then(refresh);
-  setTimeout(refresh, 800); setTimeout(refresh, 1200);
 }
 window.SiteModules.initAnimations = initAnimations;
 })();

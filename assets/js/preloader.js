@@ -1,42 +1,13 @@
-// Mesmos tempos: mínimo 900 ms, limite 2000 ms, saída .25/.15/.7 s.
+// Carrega apenas os recursos necessários à primeira tela.
 (function () {
  'use strict';
 const { gsap } = window.SiteModules;
-
-function resources() {
-  const images = new Set(), videos = new Set();
-  document.querySelectorAll('img').forEach(image => { image.loading = 'eager'; if (image.currentSrc || image.src) images.add(image.currentSrc || image.src); });
-  document.querySelectorAll('video:not([data-why-video]):not([data-brand-video])').forEach(video => {
-    video.muted = true; video.preload = 'auto';
-    if(matchMedia('(prefers-reduced-motion: reduce)').matches){video.autoplay=false;video.pause();}
-    else video.play().catch(() => {});
-    if (video.poster) images.add(video.poster);
-    const src = video.currentSrc || video.src || video.querySelector('source')?.src;
-    if (src) videos.add(src);
-  });
-  document.querySelectorAll('body *').forEach(element => {
-    for (const match of getComputedStyle(element).backgroundImage.matchAll(/url\(["']?([^"')]+)["']?\)/g)) images.add(match[1]);
-  });
-  return { images: [...images], videos: [...videos] };
-}
 
 function loadImage(url) {
   return new Promise(resolve => {
     const image = new Image(); image.decoding = 'async';
     image.onload = () => { image.decode().catch(() => {}).finally(resolve); };
     image.onerror = resolve; image.src = url;
-  });
-}
-
-// Em file:// o próprio elemento de vídeo lê o arquivo; fetch local é bloqueado.
-function loadVideo(url) {
-  if (location.protocol !== 'file:') return fetch(url, { headers: { Range:'bytes=0-1500000' } }).then(r=>r.arrayBuffer()).catch(()=>{});
-  const video = [...document.querySelectorAll('video')].find(v => (v.currentSrc || v.src || v.querySelector('source')?.src) === url);
-  if (!video || video.readyState >= 2 || video.error) return Promise.resolve();
-  return new Promise(resolve => {
-    const finish = () => { clearTimeout(timer); video.removeEventListener('loadeddata',finish); video.removeEventListener('error',finish); resolve(); };
-    const timer = setTimeout(finish,2000);
-    video.addEventListener('loadeddata',finish,{once:true}); video.addEventListener('error',finish,{once:true});
   });
 }
 
@@ -58,17 +29,17 @@ function initPreloader() {
     gsap.timeline({ onComplete: () => {
       document.documentElement.classList.remove('is-preloading'); document.body.style.overflow=''; overlay.remove();
       requestAnimationFrame(() => dispatchEvent(new Event('preloader:done')));
-    } }).to(state, { value:100, duration: reduced ? 0 : .25, ease:'power2.out', onUpdate:paint })
-      .to([name,bar.parentElement,counter], { opacity:0, filter:'blur(2px)', duration:reduced ? 0 : .15 })
-      .to(overlay, { yPercent:-100, duration:reduced ? 0 : .7, ease:'power4.inOut' }, reduced ? '>' : '-=0.05');
+    } }).to(state, { value:100, duration: reduced ? 0 : .15, ease:'power2.out', onUpdate:paint })
+      .to([name,bar.parentElement,counter], { opacity:0, duration:reduced ? 0 : .1 })
+      .to(overlay, { yPercent:-100, duration:reduced ? 0 : .35, ease:'power4.inOut' }, reduced ? '>' : '-=0.04');
   };
-  const maximum = setTimeout(finish, 2000);
+  const maximum = setTimeout(finish, 1200);
   requestAnimationFrame(() => {
-    const { images, videos } = resources();
-    const promises = [...images.map(loadImage), ...videos.map(loadVideo), document.fonts.ready];
+    const heroImage = matchMedia('(max-width: 640px)').matches ? './assets/images/eu-mobile.webp' : './assets/images/eu.webp';
+    const promises = [loadImage(heroImage), document.fonts.load('500 16px "ZT Nature"').catch(() => {})];
     let loaded=0;
     promises.forEach(p=>p.finally(()=>{ loaded++; target=Math.max(target,loaded/promises.length*96); }));
-    Promise.all(promises).then(()=>setTimeout(()=>{ clearTimeout(maximum); finish(); }, Math.max(0,900-(performance.now()-started))));
+    Promise.all(promises).then(()=>setTimeout(()=>{ clearTimeout(maximum); finish(); }, Math.max(0,450-(performance.now()-started))));
   });
 }
 window.SiteModules.initPreloader = initPreloader;

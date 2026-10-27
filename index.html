@@ -2,14 +2,18 @@
 <html lang="pt-BR" data-site-static="true">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' blob: 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' data: blob:; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
-<script src="./assets/js/template-runtime.js?v=scroll-native-2">
+<link rel="preload" as="image" href="./assets/images/eu-mobile.webp" media="(max-width: 640px)" fetchpriority="high">
+<link rel="preload" as="image" href="./assets/images/eu.webp" media="(min-width: 641px)" fetchpriority="high">
+<link rel="preload" as="font" href="./assets/fonts/zt-nature-medium.woff2" type="font/woff2" crossorigin>
+<script src="./assets/js/template-runtime.js?v=performance-1">
 </script>
 <script src="./assets/js/boot.js?v=value-reveal-1">
 </script>
 <script defer src="./assets/js/browser-shortcuts.js?v=inspection-1"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="preload" as="image" href="./assets/images/eu.webp">
+
+
 
 
 
@@ -44,7 +48,7 @@
 
 <link rel="manifest" href="./assets/data/site.webmanifest">
 <link rel="stylesheet" href="./assets/css/local-fixes.css?v=growth-section-1">
-<link rel="stylesheet" href="./assets/css/site-layout.css?v=font-originals-1">
+<link rel="stylesheet" href="./assets/css/site-layout.css?v=performance-1">
 <link rel="stylesheet" href="./assets/css/copy-layout.css?v=hero-desktop-1">
 <link rel="stylesheet" href="./servicos.css?v=services-blue-1">
 <link rel="stylesheet" href="./assets/css/liquid-buttons.css?v=cta-refined-1">
@@ -57,7 +61,7 @@
 </head>
 <body>
 <main>
-<div class="creative-hero" id="top" style="background-image:url(./assets/images/eu.webp)" data-master-section="abertura">
+<div class="creative-hero" id="top" style="background-image:var(--hero-image,url(./assets/images/eu.webp))" data-master-section="abertura">
 <header class="creative-nav">
 <nav class="scroll-nav-links" aria-label="Menu">
 <a href="#top">Início</a>
@@ -142,7 +146,7 @@
 <span class="liquid-body"><span class="liquid-icon" aria-hidden="true"><svg class="liquid-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></span><span class="cta-label liquid-label">Solicitar orçamento</span></span>
 </a>
 </nav>
-<div class="creative-portrait" style="background-image:url(./assets/images/eu.webp)" aria-hidden="true">
+<div class="creative-portrait" style="background-image:var(--hero-image,url(./assets/images/eu.webp))" aria-hidden="true">
 </div>
 <div class="creative-content">
 <section class="creative-left" id="services" aria-labelledby="creative-headline" data-master-section="section-2">
@@ -262,7 +266,7 @@
 <h3>Adecrim</h3>
 </div>
 <div class="project-actions">
-<button type="button" class="project-view" aria-controls="project-video-dialog" aria-label="Assistir vídeo do projeto Adecrim">
+<button type="button" class="project-view" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Adecrim">
 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true">
 <path d="M7 7h10v10">
 </path>
@@ -270,7 +274,7 @@
 </path>
 </svg>
 </button>
-<button type="button" class="project-pill" aria-controls="project-video-dialog" aria-label="Assistir vídeo do projeto Adecrim">Ver projeto</button>
+<button type="button" class="project-pill" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Adecrim">Ver projeto</button>
 </div>
 </div>
 </article>
@@ -283,7 +287,7 @@
 <h3>Fotógrafo</h3>
 </div>
 <div class="project-actions">
-<button type="button" class="project-view" aria-controls="project-video-dialog" aria-label="Assistir vídeo do projeto Fotógrafo">
+<button type="button" class="project-view" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Fotógrafo">
 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true">
 <path d="M7 7h10v10">
 </path>
@@ -291,7 +295,7 @@
 </path>
 </svg>
 </button>
-<button type="button" class="project-pill" aria-controls="project-video-dialog" aria-label="Assistir vídeo do projeto Fotógrafo">Ver projeto</button>
+<button type="button" class="project-pill" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Fotógrafo">Ver projeto</button>
 </div>
 </div>
 </article>
@@ -304,7 +308,7 @@
 <h3>Reality</h3>
 </div>
 <div class="project-actions">
-<button type="button" class="project-view" aria-controls="project-video-dialog" aria-label="Assistir vídeo do projeto Reality">
+<button type="button" class="project-view" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Reality">
 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true">
 <path d="M7 7h10v10">
 </path>
@@ -312,7 +316,7 @@
 </path>
 </svg>
 </button>
-<button type="button" class="project-pill" aria-controls="project-video-dialog" aria-label="Assistir vídeo do projeto Reality">Ver projeto</button>
+<button type="button" class="project-pill" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Reality">Ver projeto</button>
 </div>
 </div>
 </article>
@@ -325,7 +329,7 @@
 <h3>Masterclone</h3>
 </div>
 <div class="project-actions">
-<button type="button" class="project-view" aria-controls="project-video-dialog" aria-label="Assistir vídeo do projeto Masterclone">
+<button type="button" class="project-view" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Masterclone">
 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true">
 <path d="M7 7h10v10">
 </path>
@@ -333,7 +337,7 @@
 </path>
 </svg>
 </button>
-<button type="button" class="project-pill" aria-controls="project-video-dialog" aria-label="Assistir vídeo do projeto Masterclone">Ver projeto</button>
+<button type="button" class="project-pill" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Masterclone">Ver projeto</button>
 </div>
 </div>
 </article>
@@ -701,9 +705,9 @@
 </script>
 <script defer="" src="./assets/js/language.js?v=growth-section-1">
 </script>
-<script defer="" src="./assets/js/animations.js?v=phone-transition-1">
+<script defer="" src="./assets/js/animations.js?v=performance-1">
 </script>
-<script defer="" src="./assets/js/preloader.js?v=brand-statement-1">
+<script defer="" src="./assets/js/preloader.js?v=performance-1">
 </script>
 <script defer="" src="./assets/js/interactions.js?v=scroll-native-2">
 </script>
@@ -714,7 +718,7 @@
 <script defer="" src="./componentes/servicos/servicos.js">
 </script>
 <script defer src="./assets/js/vendor/paper-liquid-metal-0.0.82.js"></script>
-<script defer src="./assets/js/liquid-buttons.js?v=whatsapp-only-2"></script>
+<script defer src="./assets/js/liquid-buttons.js?v=performance-1"></script>
 <script defer src="./assets/js/why-section.js?v=smooth-reveal-1"></script>
 <script defer src="./assets/js/brand-statement.js?v=brand-statement-1"></script>
 </body>

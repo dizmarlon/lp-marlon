@@ -82,7 +82,20 @@
     });
     schedule();
   }
-  const mutations = new MutationObserver(scan);
+  const mutations = new MutationObserver(changes => {
+    let buttonsChanged = false, visibilityChanged = false;
+    for (const change of changes) {
+      if (change.type === 'attributes') { visibilityChanged = true; continue; }
+      for (const node of [...change.addedNodes, ...change.removedNodes]) {
+        if (node.nodeType === Node.ELEMENT_NODE && (node.matches(selector) || node.querySelector(selector))) {
+          buttonsChanged = true;
+          break;
+        }
+      }
+    }
+    if (buttonsChanged) scan();
+    else if (visibilityChanged) schedule();
+  });
   mutations.observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ['hidden', 'aria-hidden'] });
   reduced.addEventListener('change', schedule);
   forced.addEventListener('change', schedule);

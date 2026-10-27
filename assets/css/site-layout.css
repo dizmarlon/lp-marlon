@@ -5,6 +5,7 @@
 @font-face { font-family: "ZT Nature"; src: url("../fonts/zt-nature-bold.woff2?v=original-outlines-1") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
 
 :root {
+  --hero-image: url("./assets/images/eu.webp");
   --font-sans: "ZT Nature", sans-serif;
   --default-font-family: "ZT Nature", sans-serif;
   --site-max: 1280px;
@@ -68,6 +69,7 @@ html:lang(es) .creative-right h2 { font-size: clamp(32px, min(4.5vw, 9vh), 62px)
   :root { --site-padding: 24px; }
 }
 @media (max-width: 640px) {
+  :root { --hero-image: url("./assets/images/eu-mobile.webp"); }
   .creative-left {
     left: var(--site-padding);
     width: calc(100% - 2 * var(--site-padding));
