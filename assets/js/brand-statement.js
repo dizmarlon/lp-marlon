@@ -1,5 +1,6 @@
 (() => {
   'use strict';
+  (window.SiteModules?.stylesReady || Promise.resolve()).then(() => {
   const section = document.querySelector('.brand-statement');
   if (!section) return;
   const video = section.querySelector('[data-brand-video]');
@@ -33,4 +34,5 @@
   document.addEventListener('visibilitychange', update);
   addEventListener('pagehide', () => { video.pause(); section.removeAttribute('data-brand-active'); });
   addEventListener('pageshow', update);
+  });
 })();

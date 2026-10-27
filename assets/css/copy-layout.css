@@ -121,7 +121,7 @@ body { overflow-wrap: break-word; }
 .floating-bar-wordmark { white-space: nowrap; color: #f6f9fc; font-weight: 600; font-size: 16px; }
 .floating-bar--claro .floating-bar-wordmark { color: #071d38; }
 .preloader-name { font-size: clamp(36px, 10vw, 120px); font-weight: 400; text-align: center; }
-.preloader-count { font-size: clamp(56px, 14vw, 120px); bottom: calc(clamp(24px, 4vh, 40px) + 32px); right: clamp(24px, 4vw, 64px); }
+.preloader-count { min-width: 4ch; text-align: right; font-size: clamp(56px, 14vw, 120px); bottom: calc(clamp(24px, 4vh, 40px) + 32px); right: clamp(24px, 4vw, 64px); }
 .preloader-track { left: clamp(24px, 4vw, 64px); right: clamp(24px, 4vw, 64px); bottom: clamp(24px, 4vh, 40px); width: auto; height: 8px; border-radius: 999px; background: #003cfe26; box-shadow: inset 0 0 0 1px #ffffff14; }
 .preloader-bar { border-radius: inherit; background: #003CFE; box-shadow: inset 0 1px #ffffff40, 0 0 18px #003cfe66; }
 a:focus-visible, button:focus-visible { outline: 3px solid #48a7e6; outline-offset: 5px; }

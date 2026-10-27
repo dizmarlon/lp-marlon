@@ -1,6 +1,7 @@
 /* Same LiquidMetal material as the supplied React button, on the static site. */
 (() => {
   'use strict';
+  (window.SiteModules?.stylesReady || Promise.resolve()).then(() => {
   const paper = window.PaperLiquidMetal;
   if (!paper || !window.IntersectionObserver) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -102,4 +103,5 @@
   addEventListener('pagehide', () => records.forEach(release));
   addEventListener('pageshow', schedule);
   scan();
+  });
 })();

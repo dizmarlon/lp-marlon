@@ -1,6 +1,7 @@
 /* Cards originais: GSAP leve e vídeos decorativos carregados só ao aparecer. */
 (() => {
   'use strict';
+  (window.SiteModules?.stylesReady || Promise.resolve()).then(() => {
   const section = document.querySelector('.why-section');
   if (!section || section.dataset.whyReady) return;
   section.dataset.whyReady = 'true';
@@ -61,4 +62,5 @@
     }
   });
   ScrollTrigger.refresh();
+  });
 })();

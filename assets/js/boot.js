@@ -13,5 +13,5 @@ document.documentElement.classList.add('js');
     document.querySelectorAll('[data-count]').forEach(element=>{if(element.dataset.countFinal)element.textContent=element.dataset.countFinal;});
   }
   addEventListener('site:failed',recover,{once:true});
-  setTimeout(()=>{if(!document.documentElement.dataset.siteReady)recover();},7000);
+  setTimeout(()=>{if(!document.documentElement.dataset.siteReady)recover();},15000);
 })();

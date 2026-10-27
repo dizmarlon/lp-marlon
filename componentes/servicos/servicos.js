@@ -1,6 +1,7 @@
 // Componente recebido, integrado à página e aos controles de teclado.
 (() => {
   'use strict';
+  (window.SiteModules?.stylesReady || Promise.resolve()).then(() => {
   const iniciar = raiz => {
     if (raiz.dataset.pfsIniciado) return;
     raiz.dataset.pfsIniciado = '1';
@@ -56,4 +57,5 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', todos);
   else todos();
   window.pfsServicos = todos;
+  });
 })();
