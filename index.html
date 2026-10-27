@@ -7,7 +7,7 @@
 <link rel="preload" as="image" href="./assets/images/eu-mobile.webp" media="(max-width: 640px)" fetchpriority="high">
 <link rel="preload" as="image" href="./assets/images/eu.webp" media="(min-width: 641px)" fetchpriority="high">
 <link rel="preload" as="font" href="./assets/fonts/zt-nature-medium.woff2" type="font/woff2" crossorigin>
-<script defer src="./assets/js/template-runtime.js?v=critical-1">
+<script defer src="./assets/js/template-runtime.js?v=footer-scene-1">
 </script>
 <script src="./assets/js/boot.js?v=critical-1">
 </script>
@@ -30,6 +30,7 @@ html, :host { text-size-adjust: 100%; tab-size: 4; line-height: 1.5; font-family
 h1, h2, h3, h4, h5, h6 { font-size: inherit; font-weight: inherit; }
 a { color: inherit; text-decoration: inherit; }
 img, svg, video, canvas, audio, iframe, embed, object { vertical-align: middle; display: block; }
+img, video { max-width: 100%; height: auto; }
 button, input, select, optgroup, textarea { font: inherit; letter-spacing: inherit; color: inherit; opacity: 1; background-color: rgba(0, 0, 0, 0); border-radius: 0px; }
 button, input:where([type="button"], [type="reset"], [type="submit"]) { appearance: button; }
 [hidden]:where(:not([hidden="until-found"])) { display: none !important; }
@@ -114,20 +115,29 @@ body { background-color: var(--color-background); color: var(--color-foreground)
 }
 .value-inner { grid-template-columns: minmax(0px, 1fr) minmax(0px, 0.9fr); align-items: start; gap: clamp(54px, 10vw, 190px); max-width: 1440px; margin: 0px auto; display: grid; }
 .value-inner h2 { text-wrap: balance; margin: 0px; font-size: clamp(38px, 3.55vw, 63px); font-weight: 400; line-height: 1.05; }
-.value-inner h2 span { background-image: ; background-position-x: ; background-position-y: ; background-size: ; background-repeat: ; background-attachment: ; background-origin: ; background-color: ; -webkit-text-fill-color: transparent; background-clip: text; }
-.value-copy { max-width: 560px; padding-top: 6px; font-size: clamp(16px, 1.2vw, 20px); line-height: 1.45; }
-.value-copy p { margin: 0px 0px 22px; }
 @media (max-width: 800px) {
 .value-inner { grid-template-columns: 1fr; gap: 38px; }
 .value-inner h2 { font-size: clamp(37px, 7vw, 60px); }
-.value-copy { padding-top: 0px; }
 }
 @media (max-width: 640px) {
 .creative-hero { border-radius: 0px 0px 18px 18px; }
 .value-section { padding: 64px 6% 72px; }
 .value-inner { gap: 32px; }
 .value-inner h2 { font-size: clamp(35px, 9vw, 48px); }
-.value-copy { font-size: 16px; }
+}
+.stats-section { z-index: 1; color: var(--growth-ink,#fff); background: rgb(0, 0, 0); padding: clamp(65px, 8vw, 130px) clamp(20px, 5vw, 90px) 0px; position: relative; }
+.stats-container { border-top: 1px solid var(--growth-rule,#555); border-bottom: 1px solid var(--growth-rule,#555); background: rgb(0, 0, 0); width: min(100%, 1540px); margin: 0px auto; padding: clamp(10px, 1.1vw, 18px) clamp(18px, 3vw, 54px); }
+.stats-grid { grid-template-columns: repeat(4, minmax(0px, 1fr)); gap: clamp(18px, 3vw, 54px); margin: 0px; display: grid; }
+.stats-item { min-width: 0px; }
+.stats-value { white-space: nowrap; font-variant-numeric: tabular-nums; -webkit-text-fill-color: transparent; color: rgb(255, 255, 255); filter: drop-shadow(rgba(56, 128, 255, 0.35) 0px 10px 28px); background: linear-gradient(rgb(255, 255, 255) 26%, rgb(220, 236, 255) 62%, rgb(143, 194, 255)) text; font-size: clamp(40px, 4.2vw, 76px); font-weight: 300; line-height: 1; }
+.stats-suffix { color: inherit; }
+.stats-label { color: var(--growth-soft-ink,#ddd); margin: 18px 0px 0px; font-size: clamp(13px, 1vw, 17px); line-height: 1.3; }
+@media (max-width: 700px) {
+.stats-section { padding-top: 54px; }
+.stats-grid { grid-template-columns: repeat(2, minmax(0px, 1fr)); row-gap: 36px; }
+.stats-item { text-align: center; }
+.stats-value { font-size: clamp(38px, 9vw, 56px); }
+.stats-label { margin-top: 10px; }
 }
 @keyframes cta-brilho {
   0% { opacity: 0; left: -150px; }
@@ -308,6 +318,7 @@ body { overflow-wrap: break-word; }
 .creative-right .hero-subtitle { margin: 0px; font-size: 24px; line-height: 1.35; text-wrap: balance; }
 .creative-right .creative-cta-row { margin-top: 24px; justify-content: flex-end; }
 .creative-hero::before { background: linear-gradient(90deg, rgba(1, 4, 15, 0.58), transparent 48%, rgba(1, 4, 15, 0.27)), linear-gradient(0deg, rgba(1, 4, 15, 0.96), rgba(1, 4, 15, 0.4) 45%, transparent 70%); }
+.creative-hero { border-radius: 0px; }
 .creative-mobile-menu .cta-primary, .creative-mobile-menu .cta-label { color: rgb(7, 29, 56); }
 .creative-cta-row { gap: 12px; }
 .cta-btn { max-width: 100%; height: auto; min-height: 48px; font-size: 14px; }
@@ -318,12 +329,12 @@ body { overflow-wrap: break-word; }
 .value-inner { gap: clamp(36px, 6vw, 92px); }
 .value-inner h2 { font-size: clamp(34px, 3.6vw, 52px); text-wrap: balance; }
 .value-section { color: rgb(40, 40, 40); }
-.value-copy { color: rgb(40, 40, 40); font-size: var(--copy-text); line-height: 1.65; }
-.value-copy p { margin: 0px 0px 20px; }
-.value-copy p:last-child { margin-bottom: 0px; }
-.value-reveal-label { position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0px; }
-.value-reveal-word { display: inline-block; }
-.value-inner .value-reveal-label, .value-inner .value-reveal-visual, .value-inner .value-reveal-word { background: none; -webkit-text-fill-color: currentcolor; }
+.stats-section { padding-top: clamp(24px, 3vw, 48px); padding-bottom: 72px; }
+.stats-container { padding: 32px 24px; }
+.stats-grid { align-items: start; gap: 32px 24px; }
+.stats-item { text-align: center; }
+.stats-value { color: rgb(246, 249, 252); background: none; -webkit-text-fill-color: currentcolor; filter: none; }
+.stats-label { margin-top: 12px; font-size: clamp(13px, 1vw, 16px); line-height: 1.4; }
 .preloader-name { font-size: clamp(36px, 10vw, 120px); font-weight: 400; text-align: center; }
 .preloader-count { min-width: 4ch; text-align: right; font-size: clamp(56px, 14vw, 120px); bottom: calc(32px + clamp(24px, 4vh, 40px)); right: clamp(24px, 4vw, 64px); }
 .preloader-track { left: clamp(24px, 4vw, 64px); right: clamp(24px, 4vw, 64px); bottom: clamp(24px, 4vh, 40px); width: auto; height: 8px; border-radius: 999px; background: rgba(0, 60, 254, 0.15); box-shadow: rgba(255, 255, 255, 0.08) 0px 0px 0px 1px inset; }
@@ -343,10 +354,13 @@ a:focus-visible, button:focus-visible { outline: rgb(72, 167, 230) solid 3px; ou
 .value-inner h2 { font-size: 44px; }
 }
 @media (max-width: 800px) {
+.stats-grid { grid-template-columns: repeat(2, minmax(0px, 1fr)); }
 .value-inner { grid-template-columns: 1fr; gap: 28px; }
 }
 @media (max-width: 640px) {
 .value-inner h2 { font-size: 28px; }
+.stats-section { padding-top: 24px; padding-bottom: 60px; }
+.stats-container { padding: 28px 12px; }
 .creative-hero { height: 92svh; min-height: 680px; padding-top: 0px; }
 .creative-content { left: var(--site-padding); right: var(--site-padding); bottom: 5.5%; grid-template-columns: minmax(0px, 1fr); gap: 16px; }
 .creative-content > .creative-right { text-align: left; }
@@ -415,6 +429,58 @@ html, body { overscroll-behavior-y: auto; }
 .mobile-whatsapp svg { width: 29px; height: 29px; fill: currentcolor; }
 .mobile-whatsapp:active { transform: scale(0.95); }
 }
+.value-section.strategy-section { position: relative; isolation: isolate; display: flex; align-items: center; min-height: 100svh; padding: var(--copy-space, 96px) var(--site-inset); overflow: hidden; background: rgb(3, 6, 13); color: rgb(246, 249, 252); }
+.strategy-background { position: absolute; z-index: -2; inset: 0px; overflow: hidden; pointer-events: none; background: rgb(3, 6, 13); }
+.strategy-background video, .strategy-background > img { position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; }
+.strategy-section::after { content: ""; position: absolute; z-index: -1; inset: 0px; pointer-events: none; background: linear-gradient(90deg, rgba(3, 6, 13, 0.72) 0%, rgba(3, 6, 13, 0.3) 48%, rgba(3, 6, 13, 0) 100%); }
+.strategy-inner.value-inner { display: grid; grid-template-columns: minmax(0px, 0.95fr) minmax(0px, 1.05fr); align-items: center; gap: clamp(28px, 4.5vw, 72px); width: 100%; max-width: 1280px; margin: 0px auto; }
+.strategy-copy { position: relative; z-index: 2; min-width: 0px; }
+.strategy-inner .strategy-copy h2 { max-width: 22ch; margin: 0px; color: rgb(246, 249, 252); background: none; -webkit-text-fill-color: currentcolor; font-family: var(--font-sans, "ZT Nature", sans-serif); font-size: clamp(34px, 3.1vw, 44px); font-weight: 500; line-height: 1.13; letter-spacing: -0.018em; text-wrap: pretty; }
+.strategy-stats.stats-section { position: relative; z-index: auto; min-width: 0px; margin-top: clamp(32px, 3.2vw, 48px); padding: 0px; color: rgb(246, 249, 252); background: none; }
+.strategy-stats .stats-container { width: 100%; max-width: none; margin: 0px; padding: 24px 0px 0px; border-top: 1px solid rgba(255, 255, 255, 0.22); border-bottom: 0px; background: none; }
+.strategy-stats .stats-grid { display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); align-items: start; gap: 24px 20px; margin: 0px; }
+.strategy-stats .stats-item { min-width: 0px; text-align: left; }
+.strategy-stats .stats-value { color: rgb(246, 249, 252); background: none; -webkit-text-fill-color: currentcolor; filter: none; font-size: clamp(38px, 3.4vw, 48px); font-weight: 400; line-height: 1; letter-spacing: -0.035em; }
+.strategy-stats .stats-label { max-width: 15ch; margin: 12px 0px 0px; color: rgb(225, 229, 239); font-size: clamp(12px, 0.98vw, 14px); font-weight: 400; line-height: 1.45; text-wrap: pretty; }
+.strategy-mockup { position: relative; z-index: 2; justify-self: end; width: min(calc(100% + var(--strategy-edge)), 960px); min-width: 0px; margin: 0 calc(-1 * var(--strategy-edge)) 0 0; }
+.strategy-mockup picture, .strategy-mockup img { display: block; width: 100%; height: auto; }
+.strategy-mockup img { max-width: none; }
+@media (min-width: 1600px) {
+.strategy-inner .strategy-copy h2 { font-size: 44px; }
+}
+@media (min-width: 641px) and (max-width: 1024px) {
+.value-section.strategy-section { padding-block: 72px; }
+.strategy-inner.value-inner { gap: 32px; }
+.strategy-inner .strategy-copy h2 { font-size: clamp(29px, 3.5vw, 36px); }
+.strategy-stats .stats-grid { gap: 16px 12px; }
+.strategy-stats .stats-value { font-size: 36px; }
+.strategy-stats .stats-label { font-size: 12px; }
+}
+@media (max-width: 640px) {
+.value-section.strategy-section { align-items: center; padding-top: 64px; padding-bottom: 0px; }
+.strategy-section::after { background: linear-gradient(rgba(3, 6, 13, 0.5) 0%, rgba(3, 6, 13, 0.2) 50%, rgba(3, 6, 13, 0) 100%); }
+.strategy-inner.value-inner { grid-template-columns: minmax(0px, 1fr); gap: 32px; }
+.strategy-inner .strategy-copy h2 { max-width: none; font-size: 28px; line-height: 1.16; letter-spacing: -0.014em; text-wrap: pretty; }
+.strategy-stats.stats-section { margin-top: 28px; }
+.strategy-stats .stats-container { padding-top: 22px; }
+.strategy-stats .stats-grid { grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 20px 12px; }
+.strategy-stats .stats-value { font-size: clamp(32px, 8.8vw, 36px); }
+.strategy-stats .stats-label { max-width: 13ch; margin-top: 9px; font-size: 12px; line-height: 1.4; }
+.strategy-mockup { width: 104vw; margin: 0 calc(-1 * var(--site-padding)) 0 0; }
+}
+@media (max-height: 700px) and (min-width: 1025px) {
+.value-section.strategy-section { padding-block: 64px; }
+.strategy-inner .strategy-copy h2 { font-size: 38px; }
+.strategy-stats.stats-section { margin-top: 28px; }
+.strategy-stats .stats-container { padding-top: 20px; }
+}
+@media (max-height: 700px) and (max-width: 640px) {
+.value-section.strategy-section { padding-top: 40px; }
+.strategy-inner.value-inner { gap: 24px; }
+.strategy-inner .strategy-copy h2 { font-size: 27px; }
+.strategy-stats.stats-section { margin-top: 24px; }
+.strategy-stats .stats-container { padding-top: 18px; }
+}
 
 </style>
 
@@ -430,7 +496,7 @@ html, body { overscroll-behavior-y: auto; }
 
 
 <!-- Estilos combinados e CSS crítico: execute node scripts/build-styles.cjs após editar o CSS de origem. -->
-<link rel="stylesheet" media="print" data-deferred-style onload="this.media='all';this.dataset.styleReady='true'" onerror="this.dataset.styleReady='error'" href="./assets/css/site-bundle.css?v=5220aaba2049">
+<link rel="stylesheet" media="print" data-deferred-style onload="this.media='all';this.dataset.styleReady='true'" onerror="this.dataset.styleReady='error'" href="./assets/css/site-bundle.css?v=9798fe1c23c7">
 
 
 
@@ -464,7 +530,7 @@ html, body { overscroll-behavior-y: auto; }
 
 
 
-<noscript><link rel="stylesheet" href="./assets/css/site-bundle.css?v=5220aaba2049"></noscript>
+<noscript><link rel="stylesheet" href="./assets/css/site-bundle.css?v=9798fe1c23c7"></noscript>
 </head>
 <body>
 <main>
@@ -573,18 +639,73 @@ html, body { overscroll-behavior-y: auto; }
 </section>
 </div>
 </div>
-<section class="value-section" id="vantagens" aria-labelledby="value-heading" data-master-section="valor">
-<div class="value-inner">
-<div class="value-left">
-<h2 id="value-heading">O design é o primeiro ponto de contato entre sua marca e seu cliente. É ele que faz sua marca ser escolhida entre tantas.</h2>
+<div class="strategy-story" data-strategy-story>
+<div class="strategy-stage">
+<section class="value-section strategy-section" id="vantagens" aria-labelledby="value-heading" data-master-section="valor">
+<div class="strategy-background" aria-hidden="true">
+<video class="strategy-video" muted loop playsinline preload="none" poster="./assets/images/strategy-google-background.webp" aria-hidden="true" tabindex="-1">
+<source data-src="./assets/media/strategy-background.webm" type="video/webm">
+</video>
 </div>
-<div class="value-copy">
-<p>Você entrega um trabalho de qualidade, tem clientes satisfeitos e sabe que poderia estar vendendo bem mais.</p>
-<p>Mas nem sempre isso aparece quando alguém procura sua empresa na internet. Um site que não passa credibilidade faz o seu trabalho parecer menor do que ele é, e o cliente acaba escolhendo quem só parece melhor... e tu sabe o quanto isso incomoda!</p>
-<p>Meu trabalho é fazer seu site transmitir a mesma qualidade que você entrega no dia a dia, gerar confiança no primeiro clique e fazer o cliente chegar no seu WhatsApp já sabendo por que escolher você.</p>
+<div class="value-inner strategy-inner">
+<div class="value-left strategy-copy">
+<h2 id="value-heading">Vamos criar seu site com estratégia, design premium, posicionar ele no Google e gerar vendas para seu negócio.</h2>
+<section class="stats-section strategy-stats" id="resultados" aria-label="Experiência e atendimento em números" data-master-section="resultados">
+<div class="stats-container">
+<dl class="stats-grid">
+<div class="stats-item">
+<dt class="stats-value" aria-label="+8">
+<span aria-hidden="true">+<span data-count="true">8</span>
+<span class="stats-suffix">
+</span>
+</span>
+</dt>
+<dd class="stats-label">Anos de experiência</dd>
+</div>
+<div class="stats-item">
+<dt class="stats-value" aria-label="+100">
+<span aria-hidden="true">+<span data-count="true">100</span>
+<span class="stats-suffix">
+</span>
+</span>
+</dt>
+<dd class="stats-label">Clientes atendidos</dd>
+</div>
+<div class="stats-item">
+<dt class="stats-value" aria-label="+500">
+<span aria-hidden="true">+<span data-count="true">500</span>
+<span class="stats-suffix">
+</span>
+</span>
+</dt>
+<dd class="stats-label">Leads gerados todo mês</dd>
+</div>
+
+</dl>
+</div>
+</section>
+</div>
+<figure class="strategy-mockup">
+<picture>
+<source srcset="./assets/images/strategy-google-mockup-v2-600.webp 600w, ./assets/images/strategy-google-mockup-v2-900.webp 900w, ./assets/images/strategy-google-mockup-v2.webp 1200w" sizes="(max-width: 640px) calc(100vw - 20px), (max-width: 1599px) 60vw, 960px" type="image/webp">
+<img src="./assets/images/strategy-google-mockup-v2.webp" alt="Notebook com a página de pesquisa do Google" width="1200" height="872" loading="lazy" decoding="async">
+</picture>
+</figure>
+</div>
+</section>
+<section class="google-search-section" id="google-search" aria-labelledby="google-query" data-master-section="busca-google">
+<div class="google-search-surface">
+<div class="google-search-canvas">
+<picture>
+<source media="(max-width: 640px)" srcset="./assets/images/strategy-google-mobile-720.webp 720w, ./assets/images/strategy-google-mobile.webp 1080w" sizes="100vw" type="image/webp">
+<img src="./assets/images/strategy-google-screen.webp" alt="" width="1919" height="1079" loading="lazy" decoding="async" aria-hidden="true">
+</picture>
+<h2 class="google-query" id="google-query"><span class="google-query-text">Quero vender mais</span><span class="google-query-caret" aria-hidden="true"></span></h2>
 </div>
 </div>
 </section>
+</div>
+</div>
 <section class="growth-section" id="work" aria-labelledby="growth-headline" style="background-image:url(./assets/images/site-value-background.webp)" data-master-section="valor-site">
 <h2 class="growth-headline" id="growth-headline">
 <span class="growth-line">
@@ -618,136 +739,72 @@ html, body { overscroll-behavior-y: auto; }
 </a>
 </div>
 </section>
-<section class="stats-section" id="resultados" aria-label="Experiência e atendimento em números" data-master-section="resultados">
-<div class="stats-container">
-<dl class="stats-grid">
-<div class="stats-item">
-<dt class="stats-value" aria-label="+8">
-<span aria-hidden="true">+<span data-count="true">8</span>
-<span class="stats-suffix">
-</span>
-</span>
-</dt>
-<dd class="stats-label">Anos de experiência</dd>
-</div>
-<div class="stats-item">
-<dt class="stats-value" aria-label="+100">
-<span aria-hidden="true">+<span data-count="true">100</span>
-<span class="stats-suffix">
-</span>
-</span>
-</dt>
-<dd class="stats-label">Clientes atendidos</dd>
-</div>
-<div class="stats-item">
-<dt class="stats-value" aria-label="+500">
-<span aria-hidden="true">+<span data-count="true">500</span>
-<span class="stats-suffix">
-</span>
-</span>
-</dt>
-<dd class="stats-label">Leads gerados todo mês</dd>
-</div>
-<div class="stats-item">
-<dt class="stats-value" aria-label="+100">
-<span aria-hidden="true">+<span data-count="true">100</span>
-<span class="stats-suffix">
-</span>
-</span>
-</dt>
-<dd class="stats-label">Alunos e mentorados</dd>
-</div>
-</dl>
-</div>
-</section>
-<section class="projects-section" id="projects" aria-labelledby="projects-headline" data-master-section="projetos">
-<h2 class="projects-headline" id="projects-headline">Veja algumas soluções na prática.</h2>
+
+<section class="projects-section portfolio-vision" id="projects" aria-labelledby="projects-headline" data-master-section="projetos">
+<div class="portfolio-vision-stage">
+<div class="portfolio-vision-intro">
+<p class="portfolio-vision-eyebrow">Portfólio</p>
+<h2 class="projects-headline" id="projects-headline"><span>Veja algumas soluções</span> <span>na prática.</span></h2>
+<div class="portfolio-vision-preview" aria-hidden="true"></div>
 <p class="projects-sub">Explore os projetos e observe como a organização das informações e a apresentação dos serviços ajudam a comunicar cada negócio.</p>
-<div class="projects-grid">
-<article class="project-card" data-project-video="./assets/media/portfolio-adecrim.webm">
-<a class="project-media" href="#projects" aria-label="Ver projeto Adecrim">
-<img src="./assets/images/portfolio-adecrim.webp" srcset="./assets/images/portfolio-adecrim-480.webp 480w, ./assets/images/portfolio-adecrim-768.webp 768w, ./assets/images/portfolio-adecrim-1024.webp 1024w, ./assets/images/portfolio-adecrim.webp 1536w" sizes="(min-width: 1280px) 576px, (min-width: 801px) calc((100vw - 120px) / 2), calc(100vw - 48px)" alt="Landing page da Adecrim para imersão em Habeas Corpus" loading="lazy" decoding="async" width="1536" height="640">
-</a>
-<div class="project-foot">
-<div class="project-meta">
-<h3>Adecrim</h3>
 </div>
-<div class="project-actions">
-<button type="button" class="project-view" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Adecrim">
-<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true">
-<path d="M7 7h10v10">
-</path>
-<path d="M7 17 17 7">
-</path>
-</svg>
+<div class="portfolio-vision-viewer" role="region" aria-label="Projetos do portfólio">
+<div class="portfolio-vision-track">
+<article class="project-card portfolio-vision-card is-current" data-project-video="./assets/media/portfolio-adecrim.webm" role="group" aria-labelledby="portfolio-project-0">
+<button type="button" class="project-media project-view" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Adecrim">
+<img src="./assets/images/portfolio-adecrim.webp" srcset="./assets/images/portfolio-adecrim-480.webp 480w, ./assets/images/portfolio-adecrim-768.webp 768w, ./assets/images/portfolio-adecrim-1024.webp 1024w, ./assets/images/portfolio-adecrim.webp 1536w" sizes="(min-width: 1280px) 1200px, calc(100vw - 48px)" alt="Landing page da Adecrim para imersão em Habeas Corpus" loading="lazy" decoding="async" width="1536" height="640">
+<span class="portfolio-vision-cursor" aria-hidden="true"><span>Ver projeto</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
 </button>
-<button type="button" class="project-pill" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Adecrim">Ver projeto</button>
-</div>
+<div class="project-foot portfolio-vision-caption">
+<p class="portfolio-vision-type">Educação · Landing page</p>
+<h3 id="portfolio-project-0">Adecrim</h3>
+<p class="portfolio-vision-description">Landing page para uma imersão presencial em Habeas Corpus.</p>
+<button type="button" class="project-pill" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Adecrim"><span>Ver projeto</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></button>
 </div>
 </article>
-<article class="project-card" data-project-video="./assets/media/portfolio-fotografo.webm">
-<a class="project-media" href="#projects" aria-label="Ver projeto Fotógrafo">
-<img src="./assets/images/portfolio-fotografo.webp" srcset="./assets/images/portfolio-fotografo-480.webp 480w, ./assets/images/portfolio-fotografo-768.webp 768w, ./assets/images/portfolio-fotografo-1024.webp 1024w, ./assets/images/portfolio-fotografo.webp 1536w" sizes="(min-width: 1280px) 576px, (min-width: 801px) calc((100vw - 120px) / 2), calc(100vw - 48px)" alt="Landing page de mentoria para fotógrafos de casamento" loading="lazy" decoding="async" width="1536" height="640">
-</a>
-<div class="project-foot">
-<div class="project-meta">
-<h3>Fotógrafo</h3>
-</div>
-<div class="project-actions">
-<button type="button" class="project-view" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Fotógrafo">
-<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true">
-<path d="M7 7h10v10">
-</path>
-<path d="M7 17 17 7">
-</path>
-</svg>
+<article class="project-card portfolio-vision-card" data-project-video="./assets/media/portfolio-fotografo.webm" role="group" aria-labelledby="portfolio-project-1">
+<button type="button" class="project-media project-view" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Fotógrafo">
+<img src="./assets/images/portfolio-fotografo.webp" srcset="./assets/images/portfolio-fotografo-480.webp 480w, ./assets/images/portfolio-fotografo-768.webp 768w, ./assets/images/portfolio-fotografo-1024.webp 1024w, ./assets/images/portfolio-fotografo.webp 1536w" sizes="(min-width: 1280px) 1200px, calc(100vw - 48px)" alt="Landing page de mentoria para fotógrafos de casamento" loading="lazy" decoding="async" width="1536" height="640">
+<span class="portfolio-vision-cursor" aria-hidden="true"><span>Ver projeto</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
 </button>
-<button type="button" class="project-pill" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Fotógrafo">Ver projeto</button>
-</div>
+<div class="project-foot portfolio-vision-caption">
+<p class="portfolio-vision-type">Mentoria · Landing page</p>
+<h3 id="portfolio-project-1">Fotógrafo</h3>
+<p class="portfolio-vision-description">Página de apresentação de uma mentoria para fotógrafos de casamento.</p>
+<button type="button" class="project-pill" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Fotógrafo"><span>Ver projeto</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></button>
 </div>
 </article>
-<article class="project-card" data-project-video="./assets/media/portfolio-reality.webm">
-<a class="project-media" href="#projects" aria-label="Ver projeto Reality">
-<img src="./assets/images/portfolio-reality.webp" srcset="./assets/images/portfolio-reality-480.webp 480w, ./assets/images/portfolio-reality-768.webp 768w, ./assets/images/portfolio-reality-1024.webp 1024w, ./assets/images/portfolio-reality.webp 1536w" sizes="(min-width: 1280px) 576px, (min-width: 801px) calc((100vw - 120px) / 2), calc(100vw - 48px)" alt="Landing page do Reality O Jogo dos Impostos" loading="lazy" decoding="async" width="1536" height="640">
-</a>
-<div class="project-foot">
-<div class="project-meta">
-<h3>Reality</h3>
-</div>
-<div class="project-actions">
-<button type="button" class="project-view" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Reality">
-<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true">
-<path d="M7 7h10v10">
-</path>
-<path d="M7 17 17 7">
-</path>
-</svg>
+<article class="project-card portfolio-vision-card" data-project-video="./assets/media/portfolio-reality.webm" role="group" aria-labelledby="portfolio-project-2">
+<button type="button" class="project-media project-view" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Reality">
+<img src="./assets/images/portfolio-reality.webp" srcset="./assets/images/portfolio-reality-480.webp 480w, ./assets/images/portfolio-reality-768.webp 768w, ./assets/images/portfolio-reality-1024.webp 1024w, ./assets/images/portfolio-reality.webp 1536w" sizes="(min-width: 1280px) 1200px, calc(100vw - 48px)" alt="Landing page do Reality O Jogo dos Impostos" loading="lazy" decoding="async" width="1536" height="640">
+<span class="portfolio-vision-cursor" aria-hidden="true"><span>Ver projeto</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
 </button>
-<button type="button" class="project-pill" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Reality">Ver projeto</button>
-</div>
+<div class="project-foot portfolio-vision-caption">
+<p class="portfolio-vision-type">Evento online · Landing page</p>
+<h3 id="portfolio-project-2">Reality</h3>
+<p class="portfolio-vision-description">Landing page para o evento O Jogo dos Impostos.</p>
+<button type="button" class="project-pill" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Reality"><span>Ver projeto</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></button>
 </div>
 </article>
-<article class="project-card" data-project-video="./assets/media/portfolio-masterclone.webm">
-<a class="project-media" href="#projects" aria-label="Ver projeto Masterclone">
-<img src="./assets/images/portfolio-masterclone.webp" srcset="./assets/images/portfolio-masterclone-480.webp 480w, ./assets/images/portfolio-masterclone-768.webp 768w, ./assets/images/portfolio-masterclone-1024.webp 1024w, ./assets/images/portfolio-masterclone.webp 1536w" sizes="(min-width: 1280px) 576px, (min-width: 801px) calc((100vw - 120px) / 2), calc(100vw - 48px)" alt="Landing page da extensão Masterclone" loading="lazy" decoding="async" width="1536" height="640">
-</a>
-<div class="project-foot">
-<div class="project-meta">
-<h3>Masterclone</h3>
-</div>
-<div class="project-actions">
-<button type="button" class="project-view" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Masterclone">
-<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true">
-<path d="M7 7h10v10">
-</path>
-<path d="M7 17 17 7">
-</path>
-</svg>
+<article class="project-card portfolio-vision-card" data-project-video="./assets/media/portfolio-masterclone.webm" role="group" aria-labelledby="portfolio-project-3">
+<button type="button" class="project-media project-view" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Masterclone">
+<img src="./assets/images/portfolio-masterclone.webp" srcset="./assets/images/portfolio-masterclone-480.webp 480w, ./assets/images/portfolio-masterclone-768.webp 768w, ./assets/images/portfolio-masterclone-1024.webp 1024w, ./assets/images/portfolio-masterclone.webp 1536w" sizes="(min-width: 1280px) 1200px, calc(100vw - 48px)" alt="Landing page da extensão Masterclone" loading="lazy" decoding="async" width="1536" height="640">
+<span class="portfolio-vision-cursor" aria-hidden="true"><span>Ver projeto</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
 </button>
-<button type="button" class="project-pill" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Masterclone">Ver projeto</button>
-</div>
+<div class="project-foot portfolio-vision-caption">
+<p class="portfolio-vision-type">Produto digital · Landing page</p>
+<h3 id="portfolio-project-3">Masterclone</h3>
+<p class="portfolio-vision-description">Página de apresentação da extensão Masterclone.</p>
+<button type="button" class="project-pill" aria-haspopup="dialog" aria-label="Assistir vídeo do projeto Masterclone"><span>Ver projeto</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></button>
 </div>
 </article>
+</div>
+<div class="portfolio-vision-controls" hidden>
+<button type="button" data-vision-prev aria-label="Projeto anterior"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+<span class="portfolio-vision-status" aria-live="polite" aria-atomic="true" data-no-translate="true">01 / 04</span>
+<button type="button" data-vision-next aria-label="Próximo projeto"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+</div>
+</div>
 </div>
 <div class="projects-cta">
 <a class="cta-btn cta-primary whatsapp-cta" href="https://wa.me/5588981994772" data-master-link="configurado" target="_blank" rel="noopener noreferrer">
@@ -1024,6 +1081,12 @@ html, body { overscroll-behavior-y: auto; }
 </div>
 </div>
 </section>
+<div class="footer-scene">
+<picture class="footer-scene-background" aria-hidden="true">
+<source media="(max-width: 640px)" srcset="./assets/images/footer-blue-background-768.webp" type="image/webp">
+<source media="(max-width: 1200px)" srcset="./assets/images/footer-blue-background-1200.webp" type="image/webp">
+<img src="./assets/images/footer-blue-background.webp" alt="" width="1920" height="985" loading="lazy" decoding="async">
+</picture>
 <section class="brand-hand-section" aria-labelledby="brand-hand-heading" data-master-section="contato" id="contact">
 <div class="brand-hand-inner">
 <div class="brand-hand-copy">
@@ -1059,6 +1122,10 @@ html, body { overscroll-behavior-y: auto; }
 <div class="site-footer-bottom">
 <p class="site-footer-copy">2026 © Marlon Ribeiro. Todos os direitos reservados.</p>
 <div class="site-footer-actions">
+<a class="site-footer-insta" href="https://www.instagram.com/marlonr.design/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Marlon Ribeiro">
+<span class="site-footer-insta-chip" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"></circle></svg></span>
+<span data-no-translate="true">@marlonr.design</span>
+</a>
 <a href="#top" class="site-footer-top-circle" aria-label="Voltar ao topo" data-master-link="configurado">
 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up" aria-hidden="true">
 <path d="m5 12 7-7 7 7">
@@ -1071,6 +1138,7 @@ html, body { overscroll-behavior-y: auto; }
 </div>
 </div>
 </footer>
+</div>
 <div class="preloader" aria-hidden="true">
 <div class="preloader-center">
 <span class="preloader-name">MARLON</span>
@@ -1109,14 +1177,15 @@ html, body { overscroll-behavior-y: auto; }
 <script defer src="./assets/js/phone-transition.js?v=smooth-reveal-1"></script>
 <script defer="" src="./assets/js/translations.js">
 </script>
-<script defer="" src="./assets/js/copy-translations.js?v=scroll-native-2">
+<script defer="" src="./assets/js/copy-translations.js?v=footer-scene-1">
 </script>
 <script defer="" src="./assets/js/language.js?v=growth-section-1">
 </script>
-<script defer="" src="./assets/js/animations.js?v=performance-1">
+<script defer src="./assets/js/strategy-google.js?v=strategy-google-2"></script>
+<script defer="" src="./assets/js/animations.js?v=strategy-google-1">
 </script>
 
-<script defer="" src="./assets/js/interactions.js?v=scroll-native-2">
+<script defer="" src="./assets/js/interactions.js?v=strategy-google-1">
 </script>
 <script defer="" src="./assets/js/site.js?v=critical-1">
 </script>
@@ -1128,5 +1197,6 @@ html, body { overscroll-behavior-y: auto; }
 <script defer src="./assets/js/liquid-buttons.js?v=critical-1"></script>
 <script defer src="./assets/js/why-section.js?v=critical-1"></script>
 <script defer src="./assets/js/brand-statement.js?v=critical-1"></script>
+<script defer src="./assets/js/portfolio-vision.js?v=vision-origin-2"></script>
 </body>
 </html>

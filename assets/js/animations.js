@@ -5,6 +5,7 @@ const { gsap, ScrollTrigger } = window.SiteModules;
 
 function counters() {
   const section = document.querySelector('.stats-section');
+  if (!section) return;
   const nodes = [...section.querySelectorAll('[data-count]')];
   const values = nodes.map(node => Number(node.textContent));
   nodes.forEach((node,index)=>{node.dataset.countFinal=String(values[index]);});
@@ -23,7 +24,7 @@ function counters() {
     });
   };
   ScrollTrigger.create({ trigger: section, start: 'top 82%', onEnter: play, onLeaveBack: reset });
-  if (!reduce) gsap.timeline({ scrollTrigger: { trigger: section, start: 'top 92%', end: 'top 55%', scrub: .5 } })
+  if (!reduce && !section.classList.contains('strategy-stats')) gsap.timeline({ scrollTrigger: { trigger: section, start: 'top 92%', end: 'top 55%', scrub: .5 } })
     .fromTo(section.querySelector('.stats-container'), { opacity: 0, y: 48 }, { opacity: 1, y: 0, duration: 1.2, ease: 'power1.out' });
 }
 
@@ -109,7 +110,7 @@ function faq() {
 
 function valueTextReveal() {
   const heading = document.getElementById('value-heading');
-  if (!heading) return;
+  if (!heading || heading.closest('.strategy-section')) return;
   const label = document.createElement('span');
   label.className = 'value-reveal-label';
   // Keep the original text nodes so the language switch retains their source.
@@ -205,6 +206,7 @@ function growthAnimations() {
 }
 
 function projectAnimations() {
+  if (document.querySelector('.portfolio-vision')) return;
   gsap.timeline({ scrollTrigger: { trigger: '.projects-section', start: 'top 82%', end: 'top 38%', scrub: .5 } })
     .fromTo(document.querySelectorAll('.projects-headline, .projects-sub, .project-card'), { opacity: 0, y: 52 },
       { opacity: 1, y: 0, duration: 1.2, ease: 'power1.out', stagger: .14 });
@@ -214,7 +216,8 @@ function initAnimations() {
   gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.config({ ignoreMobileResize: true });
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // Os gatilhos da terceira seção são recalculados também ao mudar a preferência de movimento.
+  window.SiteModules.initStrategyGoogle?.();
+  // As sequências são recalculadas também ao mudar a preferência de movimento.
   valueTextReveal();
   growthAnimations();
   counters();

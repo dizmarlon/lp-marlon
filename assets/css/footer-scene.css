@@ -1,0 +1,207 @@
+/* O contato e o rodapé compartilham a mesma imagem azul, sem trocar a copy. */
+.footer-scene {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #03060d;
+  color: #f6f9fc;
+}
+.footer-scene-background {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  display: block;
+  pointer-events: none;
+}
+.footer-scene-background img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% center;
+}
+.footer-scene::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(180deg, #03060d 0%, #03060d 8%, #03060df2 22%, #03060dcc 46%, #03060da6 76%, #03060db3 100%);
+  pointer-events: none;
+}
+.footer-scene .brand-hand-section {
+  --brand-hand-bg: transparent;
+  position: relative;
+  z-index: 1;
+  min-height: 0;
+  padding: var(--copy-space, 96px) var(--site-inset) 64px;
+  overflow: visible;
+  background: transparent;
+}
+.footer-scene .brand-hand-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+  margin: 0;
+  padding: clamp(72px, 7vw, 96px) 48px;
+  border: 1px solid #94b6ff40;
+  border-radius: 24px;
+  background: linear-gradient(130deg, #0b1d4bf0, #050b1ef2 58%);
+}
+.footer-scene .brand-hand-copy {
+  width: 100%;
+  max-width: 860px;
+  text-align: center;
+}
+.footer-scene .brand-hand-copy h2 {
+  max-width: 22ch;
+  margin: 0 auto;
+  color: #f6f9fc;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  font-size: clamp(40px, 4.1vw, 56px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  white-space: normal;
+  text-wrap: balance;
+}
+.footer-scene .brand-hand-copy p {
+  max-width: 65ch;
+  margin: 28px auto 0;
+  color: #c6cfdf;
+  font-size: 16px;
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+.footer-scene .contact-cta { justify-content: center; margin-top: 32px; }
+.footer-scene .site-footer {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 0 var(--site-inset) 40px;
+  overflow: visible;
+  background: transparent;
+  color: #f6f9fc;
+}
+.footer-scene .site-footer-inner { gap: 36px; width: 100%; max-width: none; }
+.footer-scene .site-footer-top {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  align-items: start;
+  gap: 32px;
+  padding-top: 36px;
+  border-top: 1px solid #d4e0ff33;
+}
+.footer-scene .site-footer-brand { gap: 14px; min-width: 0; }
+.footer-scene .site-footer-wordmark {
+  width: fit-content;
+  color: #f6f9fc;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.15;
+  text-decoration: none;
+}
+.footer-scene .site-footer-brand p {
+  max-width: 30ch;
+  margin: 0;
+  color: #c6cfdf;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.footer-scene .site-footer-col { min-width: 0; gap: 4px; }
+.footer-scene .site-footer-col a {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  max-width: 100%;
+  color: #d6deec;
+  font-size: 15px;
+  line-height: 1.5;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.footer-scene .site-footer-col a:hover,
+.footer-scene .site-footer-wordmark:hover { color: #fff; }
+.footer-scene .site-footer-bottom {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #d4e0ff33;
+}
+.footer-scene .site-footer-copy { color: #c6cfdf; font-size: 13px; line-height: 1.6; }
+.footer-scene .site-footer-actions { display: flex; align-items: center; gap: 12px; }
+.footer-scene .site-footer-insta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  min-width: 0;
+  height: 52px;
+  padding: 5px 18px 5px 5px;
+  border: 1px solid #d4e0ff45;
+  border-radius: 999px;
+  background: #07112c99;
+  color: #f6f9fc;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background .2s, border-color .2s;
+}
+.footer-scene .site-footer-insta-chip {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ffffff17;
+  color: #fff;
+}
+.footer-scene .site-footer-insta-chip svg { width: 20px; height: 20px; }
+.footer-scene .site-footer-top-circle {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid #d4e0ff45;
+  border-radius: 50%;
+  background: #07112c99;
+  color: #f6f9fc;
+  transition: background .2s, border-color .2s;
+}
+.footer-scene .site-footer-insta:hover,
+.footer-scene .site-footer-top-circle:hover { border-color: #d4e0ff80; background: #10265fcc; }
+.footer-scene a:focus-visible { outline: 3px solid #b6ccff; outline-offset: 5px; }
+@media (max-width: 800px) {
+  .footer-scene .brand-hand-inner { padding: 64px 32px; }
+  .footer-scene .site-footer-top { grid-template-columns: 1.4fr 1fr 1fr; gap: 24px; }
+  .footer-scene .site-footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 640px) {
+  .footer-scene-background img { object-position: 64% center; }
+  .footer-scene .brand-hand-section { padding-top: 64px; padding-bottom: 40px; }
+  .footer-scene .brand-hand-inner { padding: 48px 20px; border-radius: 20px; }
+  .footer-scene .brand-hand-copy h2 { max-width: 18ch; font-size: clamp(30px, 8.4vw, 36px); line-height: 1.14; letter-spacing: -.018em; }
+  .footer-scene .brand-hand-copy p { margin-top: 24px; font-size: 15px; line-height: 1.65; }
+  .footer-scene .contact-cta { margin-top: 28px; }
+  .footer-scene .site-footer { padding-bottom: 104px; }
+  .footer-scene .site-footer-inner { gap: 28px; }
+  .footer-scene .site-footer-top { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; padding-top: 28px; }
+  .footer-scene .site-footer-brand { grid-column: 1 / -1; }
+  .footer-scene .site-footer-wordmark { font-size: 26px; }
+  .footer-scene .site-footer-brand p { max-width: 30ch; font-size: 14px; }
+  .footer-scene .site-footer-col { gap: 2px; }
+  .footer-scene .site-footer-col a { min-height: 42px; font-size: 14px; }
+  .footer-scene .site-footer-bottom { gap: 22px; padding-top: 24px; }
+  .footer-scene .site-footer-copy { font-size: 12px; }
+  .footer-scene .site-footer-actions { gap: 10px; }
+  .footer-scene .site-footer-insta { padding-right: 15px; font-size: 13px; }
+}

@@ -60,7 +60,7 @@ function initInteractions(lenis) {
       nextThemeAt = performance.now() + 120;
       const beneath = document.elementsFromPoint(innerWidth / 2, header.getBoundingClientRect().height / 2)
         .find(element => !header.contains(element) && !menu.contains(element) && element.closest('section, .creative-hero, .site-footer'));
-      let light = !!beneath?.closest('.value-section, .projects-section, .why-section, .site-footer');
+      let light = !!beneath?.closest('.value-section:not(.strategy-section), .google-search-section, .projects-section, .why-section, .site-footer');
       for (let element = beneath; element && element !== document.body; element = element.parentElement) {
         const color = getComputedStyle(element).backgroundColor;
         const rgb = color.match(/^rgba?\(([^)]+)\)/)?.[1].split(',').map(Number);

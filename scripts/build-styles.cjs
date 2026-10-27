@@ -9,9 +9,10 @@ const sources = [
   'assets/css/site-layout.css', 'assets/css/copy-layout.css', 'servicos.css',
   'assets/css/liquid-buttons.css', 'assets/css/process-bento.css', 'assets/css/why-section.css',
   'assets/css/phone-transition.css', 'assets/css/smooth-scroll.css',
-  'assets/css/brand-statement.css', 'assets/css/scroll-navigation.css'
+  'assets/css/brand-statement.css', 'assets/css/scroll-navigation.css',
+  'assets/css/portfolio-vision.css', 'assets/css/strategy-google.css', 'assets/css/footer-scene.css'
 ];
-const bundle = sources.map(file => `\n/* Source: ${file} */\n${fs.readFileSync(path.join(root, file), 'utf8')}\n`).join('');
+const bundle = sources.map(file => `\n/* Source: ${file} */\n${fs.readFileSync(path.join(root, file), 'utf8')}\n`).join('').trimEnd() + '\n';
 const hash = crypto.createHash('sha256').update(bundle).digest('hex').slice(0, 12);
 fs.writeFileSync(path.join(root, 'assets/css/site-bundle.css'), bundle);
 const indexPath = path.join(root, 'index.html');
