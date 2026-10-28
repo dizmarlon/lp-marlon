@@ -1,4 +1,4 @@
-/* Cards originais: GSAP leve e vídeos decorativos carregados só ao aparecer. */
+/* Cards com imagem estática e animações de entrada preservadas. */
 (() => {
   'use strict';
   (window.SiteModules?.stylesReady || Promise.resolve()).then(() => {
@@ -6,41 +6,6 @@
   if (!section || section.dataset.whyReady) return;
   section.dataset.whyReady = 'true';
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const records = [...section.querySelectorAll('[data-why-video]')].map(video => ({ video, visible: false, loaded: false }));
-  function stop(record, unload = false) {
-    record.video.pause();
-    if (!unload || !record.loaded) return;
-    record.video.removeAttribute('src');
-    record.video.querySelectorAll('source').forEach(source => source.removeAttribute('src'));
-    record.video.load();
-    record.loaded = false;
-  }
-  function update(record) {
-    if (reduced.matches) { stop(record, true); return; }
-    if (!record.visible || document.hidden) { stop(record); return; }
-    if (!record.loaded) {
-      record.video.muted = true;
-      record.video.playsInline = true;
-      record.video.querySelectorAll('source[data-src]').forEach(source => source.src = source.dataset.src);
-      record.loaded = true;
-      record.video.load();
-    }
-    record.video.play().catch(() => {});
-  }
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(entries => {
-      for (const entry of entries) {
-        const record = records.find(item => item.video === entry.target);
-        if (record) { record.visible = entry.isIntersecting; update(record); }
-      }
-    }, { threshold: .03 });
-    records.forEach(record => observer.observe(record.video));
-  }
-  reduced.addEventListener('change', () => records.forEach(update));
-  document.addEventListener('visibilitychange', () => records.forEach(update));
-  addEventListener('pagehide', () => records.forEach(record => stop(record)));
-  addEventListener('pageshow', () => records.forEach(update));
-
   const { gsap, ScrollTrigger } = window.SiteModules || {};
   if (!gsap || !ScrollTrigger) return;
   const media = gsap.matchMedia();
