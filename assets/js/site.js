@@ -24,7 +24,6 @@ try {
   }
   initInteractions(lenis);
   document.documentElement.dataset.siteReady='true';
-  window.dispatchEvent(new Event('site:controls-ready'));
   window.addEventListener('pageshow',()=>ScrollTrigger.refresh());
 } catch(error) {
   window.dispatchEvent(new Event('site:failed'));

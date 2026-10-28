@@ -4,13 +4,6 @@ const path = require('node:path');
 const http = require('node:http');
 const crypto = require('node:crypto');
 const root = path.resolve(__dirname, '..');
-let cssCompiler, terser;
-try { cssCompiler = require('lightningcss'); terser = require('terser'); }
-catch (_) {
-  cssCompiler = require(path.join(root, '.work/lighthouse-tools/node_modules/lightningcss'));
-  terser = require(path.join(root, '.work/lighthouse-tools/node_modules/terser'));
-}
-const compactCSS = source => cssCompiler.transform({ filename: 'site.css', code: Buffer.from(source), minify: true }).code.toString();
 const sources = [
   'assets/css/styles-BBPBVkOb-i8bfrl.css', 'assets/css/local-fixes.css',
   'assets/css/site-layout.css', 'assets/css/copy-layout.css', 'servicos.css',
@@ -19,7 +12,7 @@ const sources = [
   'assets/css/brand-statement.css', 'assets/css/scroll-navigation.css',
   'assets/css/portfolio-vision.css', 'assets/css/strategy-google.css', 'assets/css/footer-scene.css'
 ];
-const bundle = compactCSS(sources.map(file => `\n/* Source: ${file} */\n${fs.readFileSync(path.join(root, file), 'utf8')}\n`).join('')) + '\n';
+const bundle = sources.map(file => `\n/* Source: ${file} */\n${fs.readFileSync(path.join(root, file), 'utf8')}\n`).join('').trimEnd() + '\n';
 const hash = crypto.createHash('sha256').update(bundle).digest('hex').slice(0, 12);
 fs.writeFileSync(path.join(root, 'assets/css/site-bundle.css'), bundle);
 const indexPath = path.join(root, 'index.html');
@@ -38,18 +31,12 @@ const server = http.createServer((req, res) => {
   const name = url.pathname === '/' ? 'index.html' : decodeURIComponent(url.pathname).replace(/^\/+/, '');
   const file = path.resolve(root, name);
   if (!file.startsWith(root + path.sep) || !fs.existsSync(file) || !fs.statSync(file).isFile()) { res.writeHead(404).end(); return; }
-  const type = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.woff2': 'font/woff2', '.avif': 'image/avif', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.webm': 'video/webm', '.json': 'application/json' }[path.extname(file)] || 'application/octet-stream';
+  const type = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.woff2': 'font/woff2', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.webm': 'video/webm', '.json': 'application/json' }[path.extname(file)] || 'application/octet-stream';
   res.writeHead(200, { 'Content-Type': type });
   fs.createReadStream(file).pipe(res);
 });
 
 (async () => {
-  // A abertura acompanha os fontes sem acrescentar requisições bloqueantes.
-  for (const [id, file] of [['site-boot', 'assets/js/boot.js'], ['site-preloader', 'assets/js/preloader.js'], ['site-bootstrap', 'assets/js/bootstrap.js']]) {
-    const result = await terser.minify(fs.readFileSync(path.join(root, file), 'utf8'));
-    html = html.replace(new RegExp(`<script[^>]*id="${id}"[^>]*>[\\s\\S]*?<\\/script>`), `<script id="${id}" data-cfasync="false">${result.code}</script>`);
-  }
-  fs.writeFileSync(indexPath, html);
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
   const chrome = process.env.CHROME_PATH || (process.platform === 'win32' ? 'C:/Program Files/Google/Chrome/Application/chrome.exe' : undefined);
   const browser = await playwright.chromium.launch({ headless: true, ...(chrome ? { executablePath: chrome } : {}) });
@@ -58,7 +45,7 @@ const server = http.createServer((req, res) => {
     await page.goto(`http://127.0.0.1:${server.address().port}/`, { waitUntil: 'load' });
     await page.waitForFunction(() => [...document.querySelectorAll('link[data-deferred-style]')].every(link => link.dataset.styleReady));
     await page.waitForFunction(() => !document.querySelector('.preloader'));
-    const critical = compactCSS((await page.evaluate(() => {
+    const critical = (await page.evaluate(() => {
       const dummy = document.createElement('div');
       dummy.className = 'preloader';
       dummy.innerHTML = '<div class="preloader-center"><span class="preloader-name">MARLON</span></div><span class="preloader-count">0%</span><div class="preloader-track"><span class="preloader-bar"></span></div>';
@@ -86,7 +73,7 @@ const server = http.createServer((req, res) => {
       const result = extract(sheet.cssRules).replace(/url\((['"]?)\.\.\/(fonts|images)\//g, 'url($1./assets/$2/');
       dummy.remove();
       return result;
-    })).replace(/[\t ]+$/gm, ''));
+    })).replace(/[\t ]+$/gm, '');
     html = fs.readFileSync(indexPath, 'utf8');
     if (!html.includes('<style id="critical-first-screen">')) throw new Error('Critical style marker not found.');
     html = html.replace(/<style id="critical-first-screen">[\s\S]*?<\/style>/, `<style id="critical-first-screen">\n${critical}\n</style>`);

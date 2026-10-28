@@ -2,23 +2,8 @@
 (() => {
   'use strict';
   (window.SiteModules?.stylesReady || Promise.resolve()).then(() => {
-  if (!window.IntersectionObserver) return;
-  const fine = matchMedia('(hover: hover) and (pointer: fine)');
-  // O acabamento CSS aparece imediatamente. O WebGL é uma melhoria sob interação,
-  // dispensando compilação de shader no carregamento e nos aparelhos de toque.
-  if (!fine.matches) return;
-  let paper = window.PaperLiquidMetal, paperReady;
-  const library = new URL('vendor/paper-liquid-metal-0.0.82.min.js', document.currentScript?.src || new URL('assets/js/liquid-buttons.js', document.baseURI));
-  const loadPaper = () => {
-    if (paper) return Promise.resolve(paper);
-    return paperReady ||= new Promise(resolve => {
-      const script = document.createElement('script');
-      script.dataset.cfasync = 'false'; script.async = true; script.src = library.href;
-      script.onload = () => { paper = window.PaperLiquidMetal; resolve(paper); };
-      script.onerror = () => resolve(null);
-      document.head.append(script);
-    });
-  };
+  const paper = window.PaperLiquidMetal;
+  if (!paper || !window.IntersectionObserver) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const forced = matchMedia('(forced-colors: active)');
   const records = new Map();
@@ -44,14 +29,13 @@
   }
   function sync() {
     scheduled = 0;
-    if (!paper) return;
     for (const record of records.values()) {
       if (!visible(record) || forced.matches) release(record);
     }
     let active = [...records.values()].filter(record => record.mount).length;
     for (const record of records.values()) {
       if (record.mount) { record.mount.setSpeed(speed(record)); continue; }
-      if (!record.activated || !visible(record) || forced.matches || record.failed || active >= maxContexts) continue;
+      if (!visible(record) || forced.matches || record.failed || active >= maxContexts) continue;
       try {
         record.mount = new paper.ShaderMount(record.layer, paper.liquidMetalFragmentShader,
           { ...uniforms }, { alpha: false, powerPreference: 'low-power' }, speed(record), record.frame, 1, 160000);
@@ -86,15 +70,9 @@
       const layer = button.querySelector(':scope > .liquid-metal-layer');
       if (!layer) return;
       const events = new AbortController();
-      const record = { button, layer, events, mount: null, visible: false, frame: 12000, hovered: false, focused: button.matches(':focus'), activated: false, failed: false };
+      const record = { button, layer, events, mount: null, visible: false, frame: 12000, hovered: false, focused: button.matches(':focus'), failed: false };
       records.set(button, record);
-      const update = () => {
-        if (record.mount) { record.mount.setSpeed(speed(record)); return; }
-        if ((record.hovered || record.focused) && !reduced.matches && !forced.matches) {
-          record.activated = true;
-          loadPaper().then(schedule);
-        }
-      };
+      const update = () => { if (record.mount) record.mount.setSpeed(speed(record)); };
       button.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse') { record.hovered = true; update(); } }, { signal: events.signal });
       button.addEventListener('pointerleave', () => { record.hovered = false; update(); }, { signal: events.signal });
       button.addEventListener('focus', () => { record.focused = true; update(); }, { signal: events.signal });
