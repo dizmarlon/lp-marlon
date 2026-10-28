@@ -50,6 +50,8 @@ body { overflow-wrap: break-word; }
 .value-inner .value-reveal-label, .value-inner .value-reveal-visual, .value-inner .value-reveal-word { background: none; -webkit-text-fill-color: currentColor; }
 /* O conteúdo define a altura: evita vazios em telas altas e sobreposição nos números. */
 .growth-section {
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr) minmax(0, 1fr);
   grid-template-areas: "headline headline headline" "left art right";
@@ -61,6 +63,7 @@ body { overflow-wrap: break-word; }
   padding-top: clamp(80px, calc(6vw + 24px), 120px);
   padding-bottom: clamp(104px, calc(6vw + 24px), 136px);
 }
+.growth-section .growth-background { position: absolute; z-index: -1; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 .growth-section .growth-headline { grid-area: headline; position: relative; top: auto; bottom: auto; left: auto; right: auto; justify-self: center; width: min(700px, 100%); margin: 0; padding: 0; transform: none; }
 .growth-section .growth-headline, .growth-section .growth-line, .growth-section .growth-word { color: #f6f9fc; background: none; -webkit-text-fill-color: currentColor; filter: none; }
 .growth-section .growth-art-position { grid-area: art; position: relative; top: auto; bottom: auto; left: auto; right: auto; width: 100%; margin: 0; transform: none; }
@@ -196,4 +199,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid #48a7e6; outline-offs
 @media (scripting: none) {
   .lang-toggle { display: none; }
   .faq-answer { grid-template-rows: 1fr; }
+  .growth-background[data-viewport-src], .growth-art[data-viewport-src] { display: none; }
+  .why-card-media { background: url('../images/why-earth-orbit.webp') center / cover no-repeat; }
+  .brand-statement-video { background: url('../images/brand-blue-streaks-v2.webp') center / cover no-repeat; }
 }

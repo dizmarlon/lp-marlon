@@ -5,7 +5,6 @@
 @font-face { font-family: "ZT Nature"; src: url("../fonts/zt-nature-bold.woff2?v=original-outlines-1") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
 
 :root {
-  --hero-image: url("./assets/images/eu.webp");
   --font-sans: "ZT Nature", sans-serif;
   --default-font-family: "ZT Nature", sans-serif;
   --site-max: 1280px;
@@ -15,6 +14,7 @@
 }
 
 body, button, input, textarea, select { font-family: var(--font-sans); }
+.creative-portrait .hero-image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% center; }
 :root h1, :root h2 { font-weight: 500; }
 
 .value-section, .growth-section, .stats-section, .fraaame-section,
@@ -69,7 +69,7 @@ html:lang(es) .creative-right h2 { font-size: clamp(32px, min(4.5vw, 9vh), 62px)
   :root { --site-padding: 24px; }
 }
 @media (max-width: 640px) {
-  :root { --hero-image: url("./assets/images/eu-mobile.webp"); }
+  .creative-portrait .hero-image { object-position: 52.5% center; }
   .creative-left {
     left: var(--site-padding);
     width: calc(100% - 2 * var(--site-padding));

@@ -184,8 +184,8 @@ function growthAnimations() {
       let entered = false;
       const imageTween = gsap.fromTo(image, { autoAlpha: 0, scale: .82, y: 24 },
         { autoAlpha: 1, scale: 1, y: 0, duration: .85, ease: 'power3.out', paused: true });
-      const playImage = () => { if (entered && image.complete && image.naturalWidth > 0) imageTween.play(); };
-      const imageLoaded = () => { ScrollTrigger.refresh(); playImage(); };
+      const playImage = () => { if (entered && !image.dataset.viewportSrc && image.complete && image.naturalWidth > 0) imageTween.play(); };
+      const imageLoaded = () => { if (image.dataset.viewportSrc) return; ScrollTrigger.refresh(); playImage(); };
       image.addEventListener('load', imageLoaded);
       ScrollTrigger.create({ trigger: section.querySelector('.growth-art-position'), start: 'top 90%', once: true,
         onEnter: () => { entered = true; playImage(); } });

@@ -7,7 +7,6 @@
   const counter = overlay.querySelector('.preloader-count');
   const name = overlay.querySelector('.preloader-name');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const started = performance.now();
   let target = 0, value = 0, finished = false, frame;
   document.documentElement.classList.add('is-preloading');
   document.body.style.overflow = 'hidden';
@@ -38,24 +37,22 @@
       element.style.transition = 'opacity .1s ease';
       element.style.opacity = '0';
     });
-    overlay.style.transition = 'transform .35s cubic-bezier(.76, 0, .24, 1)';
+    overlay.style.transition = 'transform .14s cubic-bezier(.76, 0, .24, 1)';
     requestAnimationFrame(() => { overlay.style.transform = 'translate3d(0,-100%,0)'; });
-    setTimeout(remove, 400);
+    setTimeout(remove, 170);
   }
   frame = requestAnimationFrame(tick);
-  const maximum = setTimeout(finish, 1200);
-  const image = new Image();
-  image.decoding = 'async';
-  const imageReady = new Promise(resolve => {
-    image.onload = () => image.decode().catch(() => {}).finally(resolve);
-    image.onerror = resolve;
-    image.src = matchMedia('(max-width: 640px)').matches ? './assets/images/eu-mobile.webp' : './assets/images/eu.webp';
+  const maximum = setTimeout(finish, 450);
+  const image = document.querySelector('.hero-image');
+  const imageReady = !image ? Promise.resolve() : image.complete ? image.decode().catch(() => {}) : new Promise(resolve => {
+    image.addEventListener('load', () => image.decode().catch(() => {}).finally(resolve), { once: true });
+    image.addEventListener('error', resolve, { once: true });
   });
   const fontsReady = document.fonts.load('500 16px "ZT Nature"').catch(() => {});
   let loaded = 0;
   [imageReady, fontsReady].forEach(p => p.finally(() => { target = ++loaded * 48; }));
-  Promise.all([imageReady, fontsReady]).then(() => setTimeout(() => {
+  Promise.all([imageReady, fontsReady]).then(() => {
     clearTimeout(maximum);
     finish();
-  }, Math.max(0, 450 - (performance.now() - started))));
+  });
 })();
