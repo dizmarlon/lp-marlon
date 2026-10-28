@@ -2,6 +2,12 @@
 (function () {
   'use strict';
   const entries = [
+    ['Estratégia para seu negócio', 'Strategy for your business', 'Estrategia para tu negocio'],
+    ['Entendo sua empresa, seu público e o que você quer alcançar. A estrutura e o conteúdo do site são planejados a partir disso.', 'I learn about your business, your audience and what you want to achieve. Your website’s structure and content are planned around that.', 'Conozco tu empresa, tu público y lo que quieres lograr. La estructura y el contenido del sitio se planifican a partir de eso.'],
+    ['Design que mostra seu valor', 'Design that shows your value', 'Diseño que muestra tu valor'],
+    ['Sua marca ganha uma apresentação própria, alinhada à qualidade do seu trabalho, para transmitir credibilidade desde o primeiro acesso.', 'Your brand gets a distinctive presentation that reflects the quality of your work and builds credibility from the first visit.', 'Tu marca recibe una presentación propia, alineada con la calidad de tu trabajo, para transmitir credibilidad desde la primera visita.'],
+    ['Um caminho claro até o contato', 'A clear path to getting in touch', 'Un camino claro hasta el contacto'],
+    ['Apresento sua oferta com clareza, respondo às principais dúvidas e facilito o próximo passo: o cliente falar com você pelo WhatsApp.', 'I present your offer clearly, answer the main questions and make the next step easy: contacting you on WhatsApp.', 'Presento tu oferta con claridad, respondo las principales dudas y facilito el siguiente paso: que el cliente te contacte por WhatsApp.'],
     ['Instagram de Marlon Ribeiro', 'Marlon Ribeiro on Instagram', 'Instagram de Marlon Ribeiro'],
     ['Vamos criar seu site com estratégia, design premium, posicionar ele no Google e gerar vendas para seu negócio.', 'Let’s build your website with strategy and premium design, position it on Google and generate sales for your business.', 'Vamos a crear tu sitio web con estrategia y diseño premium, posicionarlo en Google y generar ventas para tu negocio.'],
     ['Quero vender mais', 'I want to sell more', 'Quiero vender más'],
