@@ -2,6 +2,9 @@
 (function () {
   'use strict';
   const entries = [
+    ['Criação de Sites, Landing Pages e SEO | Marlon Ribeiro', 'Website Design, Landing Pages and SEO | Marlon Ribeiro', 'Diseño Web, Landing Pages y SEO | Marlon Ribeiro'],
+    ['Criação de sites e landing pages sob medida com Marlon Ribeiro. Design premium, SEO e atendimento online em todo o Brasil. Solicite seu orçamento.', 'Custom websites and landing pages by Marlon Ribeiro. Premium design, SEO and online service throughout Brazil. Request a quote.', 'Sitios web y landing pages a medida con Marlon Ribeiro. Diseño premium, SEO y atención en línea en todo Brasil. Solicita tu presupuesto.'],
+    ['Atendimento online em todo o Brasil.', 'Online service throughout Brazil.', 'Atención en línea en todo Brasil.'],
     ['Estratégia para seu negócio', 'Strategy for your business', 'Estrategia para tu negocio'],
     ['Entendo sua empresa, seu público e o que você quer alcançar. A estrutura e o conteúdo do site são planejados a partir disso.', 'I learn about your business, your audience and what you want to achieve. Your website’s structure and content are planned around that.', 'Conozco tu empresa, tu público y lo que quieres lograr. La estructura y el contenido del sitio se planifican a partir de eso.'],
     ['Design que mostra seu valor', 'Design that shows your value', 'Diseño que muestra tu valor'],
